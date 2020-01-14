@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <ScoreCalculator msg="Welcome to Your Vue.js App"/>
+    <Player />
   </div>
 </template>
 
 <script>
-import ScoreCalculator from '@/components/ScoreCalculator.vue';
+import Player from '@/components/Player.vue'
 
 export default {
   name: 'app',
   components: {
-    ScoreCalculator,
-  },
-};
+    Player
+  }
+}
 </script>
