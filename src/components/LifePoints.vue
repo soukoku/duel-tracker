@@ -22,6 +22,7 @@
 <script>
 export default {
   props: {
+    animate: { type: Boolean },
     points: { type: Number, required: true }
   },
   data() {
