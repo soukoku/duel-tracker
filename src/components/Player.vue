@@ -44,7 +44,7 @@ export default {
   components: { LifeAudio, LifePoints },
   data() {
     return {
-      points: 423967,
+      points: 8000,
       isNew: false
     }
   },
