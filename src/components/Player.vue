@@ -1,5 +1,6 @@
 <template>
   <div class="p-4 border-2 border-gray-600">
+    <LifeAudio ref="sounds" />
     <LifePoints :points="points" />
 
     <div class="flex">
@@ -36,11 +37,11 @@
 </template>
 
 <script>
+import LifeAudio from './LifeAudio'
 import LifePoints from './LifePoints'
-import { playStart, playLifeChange, playLifeZero } from '@/sounds'
 
 export default {
-  components: { LifePoints },
+  components: { LifeAudio, LifePoints },
   data() {
     return {
       points: 423967,
@@ -52,9 +53,9 @@ export default {
       if (this.isNew) {
         this.isNew = false
       } else if (val > 0) {
-        playLifeChange()
+        this.$refs.sounds.playChange()
       } else {
-        playLifeZero()
+        this.$refs.sounds.playZero()
       }
     }
   },
@@ -62,7 +63,7 @@ export default {
     reset() {
       this.isNew = true
       this.points = 8000
-      playStart()
+      this.$refs.sounds.playStart()
     },
     multiply(factor) {
       this.points = Math.ceil(this.points * factor)
