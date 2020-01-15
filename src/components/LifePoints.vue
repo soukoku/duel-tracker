@@ -1,18 +1,20 @@
 <template>
   <svg
-    viewBox="0 0 130 20"
-    class="bg-blue-100 fill-current border border-gray-500"
+    viewBox="0 0 160 40"
+    style="max-height:120px;"
+    class="bg-blue-100 fill-current max-w-full
+    border border-gray-500 
+    font-serif italic text-4xl text-yellow-400"
   >
     <text
       x="50%"
       y="50%"
-      dominant-baseline="middle"
       text-anchor="middle"
-      class="font-serif italic text-yellow-400"
+      dominant-baseline="middle"
       stroke="gray"
-      stroke-width=".2%"
+      stroke-width=".4%"
     >
-      {{ points }}
+      {{ display }}
     </text>
   </svg>
 </template>
@@ -20,7 +22,17 @@
 <script>
 export default {
   props: {
-    points: Number
+    points: { type: Number, required: true }
+  },
+  data() {
+    return {
+      display: this.points
+    }
+  },
+  watch: {
+    points(val) {
+      this.display = val
+    }
   }
 }
 </script>
