@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col p-4 bg-no-repeat bg-center bg-cover" :style="styles">
+  <div
+    class="flex flex-col p-4 bg-no-repeat bg-center bg-cover"
+    :style="styles"
+  >
     <LifeAudio ref="sounds" />
     <LifePoints :points="points" :animate="!isNew" class="mb-3" />
 
@@ -67,7 +70,9 @@
         v-model="customAmount"
       >
         <template v-slot:before>
-          <span class="flex items-center whitespace-no-wrap px-2 text-gray-700 bg-gray-100">
+          <span
+            class="flex items-center whitespace-no-wrap px-2 text-gray-700 bg-gray-100"
+          >
             Custom &gt;
           </span>
         </template>
@@ -96,11 +101,11 @@
 </template>
 
 <script>
-import DButton from './DButton'
-import DTextbox from './DTextbox'
-import LifeAudio from './LifeAudio'
-import LifePoints from './LifePoints'
-import SvgIcon from './SvgIcon'
+import DButton from './DButton.vue'
+import DTextbox from './DTextbox.vue'
+import LifeAudio from './LifeAudio.vue'
+import LifePoints from './LifePoints.vue'
+import SvgIcon from './SvgIcon.vue'
 
 export default {
   components: { DButton, DTextbox, LifeAudio, LifePoints, SvgIcon },
