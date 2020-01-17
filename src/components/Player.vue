@@ -56,29 +56,59 @@
         2
       </DButton>
     </div>
-    <div class="flex text-lg">
+    <div class="flex text-lg font-semibold">
       <DButton @click="reset" class="flex-none">
-        Reset
+        Restart
       </DButton>
-      <div class="flex-auto">
-        
-      </div>
+      <DTextbox
+        class="flex-auto"
+        inputClass="text-right"
+        type="number"
+        min="0"
+        max="90000"
+        selectOnFocus
+        v-model="customAmount"
+      >
+        <template v-slot:before>
+          <span class="flex items-center px-2 text-gray-700 bg-gray-100">
+            Custom amount &gt;
+          </span>
+        </template>
+        <template v-slot:after>
+          <DButton
+            @click="add(-customAmount)"
+            color="red"
+            title="Subtract custom amount"
+          >
+            <SvgIcon icon="Minus" />
+          </DButton>
+          <DButton
+            @click="add(customAmount)"
+            color="green"
+            title="Add custom amount"
+          >
+            <SvgIcon icon="Plus" />
+          </DButton>
+        </template>
+      </DTextbox>
     </div>
   </div>
 </template>
 
 <script>
 import DButton from './DButton'
+import DTextbox from './DTextbox'
 import LifeAudio from './LifeAudio'
 import LifePoints from './LifePoints'
 import SvgIcon from './SvgIcon'
 
 export default {
-  components: { DButton, LifeAudio, LifePoints, SvgIcon },
+  components: { DButton, DTextbox, LifeAudio, LifePoints, SvgIcon },
   data() {
     return {
       points: 8000,
-      isNew: false
+      isNew: false,
+      customAmount: 0
     }
   },
   watch: {
@@ -102,7 +132,8 @@ export default {
       this.points = Math.ceil(this.points * factor)
     },
     add(amount) {
-      this.points = Math.max(0, this.points + amount)
+      const parsed = Number(amount)
+      if (!isNaN(parsed)) this.points = Math.max(0, this.points + parsed)
     }
   }
 }
