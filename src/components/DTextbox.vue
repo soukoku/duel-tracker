@@ -7,7 +7,7 @@
     <input
       ref="input"
       v-model="valueReal"
-      class="flex-auto focus:outline-none border-0 px-2"
+      class="flex-auto focus:outline-none border-0 px-2 bg-transparent"
       :class="inputClass"
       @focus="handleFocus"
       @blur="focused = false"

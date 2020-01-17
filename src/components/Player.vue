@@ -1,5 +1,8 @@
 <template>
-  <div class="p-4 border-2 border-gray-600">
+  <div
+    class="p-4 bg-no-repeat bg-center bg-cover"
+    style="max-width:640px; background-image:url(/imgs/bg-stars.jpg)"
+  >
     <LifeAudio ref="sounds" />
     <LifePoints :points="points" :animate="!isNew" class="mb-3" />
 
@@ -61,7 +64,7 @@
         Restart
       </DButton>
       <DTextbox
-        class="flex-auto"
+        class="flex-auto bg-white"
         inputClass="text-right font-semibold"
         type="number"
         min="0"

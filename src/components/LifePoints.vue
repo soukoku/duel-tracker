@@ -1,29 +1,11 @@
 <template>
   <div
-    class="lp-text bg-blue-100 flex items-center justify-center
-        border border-gray-500 
+    class="lp-text flex items-center justify-center
         font-serif italic text-yellow-400"
+    aria-label="Life points"
   >
     {{ display }}
   </div>
-  <!-- <svg
-      viewBox="0 0 160 40"
-      style="max-height:120px;"
-      class="bg-blue-100 fill-current max-w-full
-        border border-gray-500 
-        font-serif italic text-4xl text-yellow-400"
-    >
-      <text
-        x="50%"
-        y="50%"
-        text-anchor="middle"
-        dominant-baseline="middle"
-        stroke="gray"
-        stroke-width=".4%"
-      >
-        {{ display }}
-      </text>
-    </svg> -->
 </template>
 
 <script>
@@ -39,7 +21,26 @@ export default {
   },
   watch: {
     points(val) {
-      this.display = val
+      this.cleanUp()
+      if (this.animate) {
+        this.animateHandle = this.scrollNumber(this.display, val)
+      } else {
+        this.display = val
+      }
+    }
+  },
+  beforeDestroy() {
+    this.cleanUp()
+  },
+  methods: {
+    cleanUp() {
+      if (this.animateHandle) this.animateHandle.stop()
+    },
+    scrollNumber(from, to) {
+      this.display = to
+      return {
+        stop() {}
+      }
     }
   }
 }
@@ -47,7 +48,7 @@ export default {
 <style>
 .lp-text {
   font-size: 4em;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
 }
 @screen md {
   .lp-text {
