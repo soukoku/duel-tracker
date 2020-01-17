@@ -1,12 +1,9 @@
 <template>
-  <div
-    class="p-4 bg-no-repeat bg-center bg-cover"
-    style="max-width:640px; background-image:url(/imgs/bg-stars.jpg)"
-  >
+  <div class="flex flex-col p-4 bg-no-repeat bg-center bg-cover" :style="styles">
     <LifeAudio ref="sounds" />
     <LifePoints :points="points" :animate="!isNew" class="mb-3" />
 
-    <div class="button-row flex text-lg">
+    <div class="button-row flex-none flex flex-wrap text-lg">
       <DButton @click="add(-100)" color="red">
         <SvgIcon icon="Minus" title="Minus" />
         100
@@ -33,7 +30,7 @@
         2
       </DButton>
     </div>
-    <div class="button-row flex text-lg">
+    <div class="button-row flex-none flex flex-wrap text-lg">
       <DButton @click="add(100)" color="green">
         <SvgIcon icon="Plus" title="Plus" />
         100
@@ -59,10 +56,7 @@
         2
       </DButton>
     </div>
-    <div class="flex text-lg font-semibold">
-      <DButton @click="reset" class="flex-none">
-        Restart
-      </DButton>
+    <div class="flex-none flex flex-wrap text-lg font-semibold">
       <DTextbox
         class="flex-auto bg-white"
         inputClass="text-right font-semibold"
@@ -73,8 +67,8 @@
         v-model="customAmount"
       >
         <template v-slot:before>
-          <span class="flex items-center px-2 text-gray-700 bg-gray-100">
-            Custom amount &gt;
+          <span class="flex items-center whitespace-no-wrap px-2 text-gray-700 bg-gray-100">
+            Custom &gt;
           </span>
         </template>
         <template v-slot:after>
@@ -94,6 +88,9 @@
           </DButton>
         </template>
       </DTextbox>
+      <DButton @click="reset" class="flex-none">
+        Restart
+      </DButton>
     </div>
   </div>
 </template>
@@ -112,6 +109,12 @@ export default {
       points: 8000,
       isNew: false,
       customAmount: 0
+    }
+  },
+  computed: {
+    styles() {
+      return ''
+      // max-width:640px; background-image:url(/imgs/bg-stars.jpg)
     }
   },
   watch: {
