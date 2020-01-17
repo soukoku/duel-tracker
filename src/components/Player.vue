@@ -4,44 +4,29 @@
     <LifePoints :points="points" :animate="!isNew" />
 
     <div class="flex">
-      <button
-        class="px-4 py-2 bg-gray-200 hover:bg-gray-300 active:bg-gray-400"
-        type="button"
-        @click="multiply(0.5)"
-      >
+      <DButton @click="multiply(0.5)" color="red">
         Half
-      </button>
-      <button
-        class="px-4 py-2 bg-gray-200 hover:bg-gray-300 active:bg-gray-400"
-        type="button"
-        @click="multiply(2)"
-      >
+      </DButton>
+      <DButton @click="multiply(2)" color="green">
         Double
-      </button>
-      <button
-        class="px-4 py-2 bg-gray-200 hover:bg-gray-300 active:bg-gray-400"
-        type="button"
-        @click="add(-100)"
-      >
+      </DButton>
+      <DButton @click="add(-100)" disabled color="red">
         -100
-      </button>
-      <button
-        class="px-4 py-2 bg-gray-200 hover:bg-gray-300 active:bg-gray-400"
-        type="button"
-        @click="reset"
-      >
+      </DButton>
+      <DButton @click="reset">
         Reset
-      </button>
+      </DButton>
     </div>
   </div>
 </template>
 
 <script>
+import DButton from './DButton'
 import LifeAudio from './LifeAudio'
 import LifePoints from './LifePoints'
 
 export default {
-  components: { LifeAudio, LifePoints },
+  components: { DButton, LifeAudio, LifePoints },
   data() {
     return {
       points: 8000,
