@@ -3,7 +3,7 @@
     :type="type"
     :disabled="disabled"
     :class="allCls"
-    class="transition font-semibold m-1 px-4 py-2 rounded-sm focus:outline-none focus:shadow-outline"
+    class="transition flex items-center justify-center font-semibold m-1 px-4 py-2 rounded-sm focus:outline-none focus:shadow-outline"
     @click="$emit('click', $event)"
   >
     <slot></slot>

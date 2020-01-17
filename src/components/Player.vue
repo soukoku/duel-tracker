@@ -3,49 +3,67 @@
     <LifeAudio ref="sounds" />
     <LifePoints :points="points" :animate="!isNew" class="mb-4" />
 
-    <div class="flex button-row">
+    <div class="button-row flex text-lg">
       <DButton @click="add(-100)" color="red">
-        -100
+        <SvgIcon icon="Minus" title="Minus" />
+        100
       </DButton>
       <DButton @click="add(-200)" color="red">
-        -200
+        <SvgIcon icon="Minus" title="Minus" />
+        200
       </DButton>
       <DButton @click="add(-500)" color="red">
-        -500
+        <SvgIcon icon="Minus" title="Minus" />
+        500
       </DButton>
       <DButton @click="add(-1000)" color="red">
-        -1000
+        <SvgIcon icon="Minus" title="Minus" />
+        1000
       </DButton>
       <DButton @click="add(-2000)" color="red">
-        -2000
+        <SvgIcon icon="Minus" title="Minus" />
+        2000
       </DButton>
-      <DButton @click="multiply(0.5)" color="red">
-        1/2
+      <DButton @click="multiply(0.5)" color="red" title="Half">
+        1
+        <SvgIcon icon="SlashForward" class="-ml-1 -mr-1" />
+        2
       </DButton>
     </div>
-    <div class="flex button-row">
+    <div class="button-row flex text-lg">
       <DButton @click="add(100)" color="green">
-        +100
+        <SvgIcon icon="Plus" title="Plus" />
+        100
       </DButton>
       <DButton @click="add(200)" color="green">
-        +200
+        <SvgIcon icon="Plus" title="Plus" />
+        200
       </DButton>
       <DButton @click="add(500)" color="green">
-        +500
+        <SvgIcon icon="Plus" title="Plus" />
+        500
       </DButton>
       <DButton @click="add(1000)" color="green">
-        +1000
+        <SvgIcon icon="Plus" title="Plus" />
+        1000
       </DButton>
       <DButton @click="add(2000)" color="green">
-        +2000
+        <SvgIcon icon="Plus" title="Plus" />
+        2000
       </DButton>
-      <DButton @click="multiply(2)" color="green">
-        x2
+      <DButton @click="multiply(2)" color="green" title="Double">
+        <SvgIcon icon="Close" />
+        2
       </DButton>
     </div>
-    <DButton @click="reset">
-      Reset
-    </DButton>
+    <div class="flex text-lg">
+      <DButton @click="reset" class="flex-none">
+        Reset
+      </DButton>
+      <div class="flex-auto">
+        
+      </div>
+    </div>
   </div>
 </template>
 
@@ -53,9 +71,10 @@
 import DButton from './DButton'
 import LifeAudio from './LifeAudio'
 import LifePoints from './LifePoints'
+import SvgIcon from './SvgIcon'
 
 export default {
-  components: { DButton, LifeAudio, LifePoints },
+  components: { DButton, LifeAudio, LifePoints, SvgIcon },
   data() {
     return {
       points: 8000,
