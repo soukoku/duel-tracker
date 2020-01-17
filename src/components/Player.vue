@@ -62,7 +62,7 @@
       </DButton>
       <DTextbox
         class="flex-auto"
-        inputClass="text-right"
+        inputClass="text-right font-semibold"
         type="number"
         min="0"
         max="90000"
