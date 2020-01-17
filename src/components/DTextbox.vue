@@ -57,4 +57,7 @@ input[type='number']::-webkit-outer-spin-button {
   appearance: none;
   margin: 0;
 }
+input::-ms-clear {
+  display: none;
+}
 </style>

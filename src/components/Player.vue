@@ -1,7 +1,7 @@
 <template>
   <div class="p-4 border-2 border-gray-600">
     <LifeAudio ref="sounds" />
-    <LifePoints :points="points" :animate="!isNew" class="mb-4" />
+    <LifePoints :points="points" :animate="!isNew" class="mb-3" />
 
     <div class="button-row flex text-lg">
       <DButton @click="add(-100)" color="red">
