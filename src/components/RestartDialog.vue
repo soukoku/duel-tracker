@@ -13,6 +13,8 @@
 
       <div
         class="absolute bottom-0 left-0 right-0 bg-blue-900 text-blue-100 rounded-t-sm py-4 text-center max-h-full overflow-auto"
+        role="dialog"
+        aria-label="New game settings dialog"
       >
         Track a new game with
 
@@ -130,16 +132,14 @@ export default {
 }
 </script>
 <style>
-/* Enter and leave animations can use different */
-/* durations and timing functions.              */
 .slide-up-enter-active {
   transition: all 0.3s ease;
 }
 .slide-up-leave-active {
   transition: all 0.3s ease;
 }
-.slide-up-enter, .slide-up-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
+.slide-up-enter,
+.slide-up-leave-to {
   transform: translateY(20px);
   opacity: 0;
 }
