@@ -62,7 +62,7 @@
             Cancel
           </DButton>
           <DButton @click="close(true)" color="green" class="mx-2 w-32">
-            Accept
+            Start
           </DButton>
         </div>
       </div>
