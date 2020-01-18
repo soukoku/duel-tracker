@@ -6,6 +6,32 @@
     <LifePoints :points="player.life" :animate="!isNew" class="mb-3" />
 
     <div class="button-row flex-none flex flex-wrap text-lg">
+      <DButton @click="add(100)" color="green">
+        <SvgIcon icon="Plus" title="Plus" />
+        100
+      </DButton>
+      <DButton @click="add(200)" color="green">
+        <SvgIcon icon="Plus" title="Plus" />
+        200
+      </DButton>
+      <DButton @click="add(500)" color="green">
+        <SvgIcon icon="Plus" title="Plus" />
+        500
+      </DButton>
+      <DButton @click="add(1000)" color="green">
+        <SvgIcon icon="Plus" title="Plus" />
+        1000
+      </DButton>
+      <DButton @click="add(2000)" color="green">
+        <SvgIcon icon="Plus" title="Plus" />
+        2000
+      </DButton>
+      <DButton @click="multiply(2)" color="green" title="Double">
+        <SvgIcon icon="Close" />
+        2
+      </DButton>
+    </div>
+    <div class="button-row flex-none flex flex-wrap text-lg">
       <DButton @click="add(-100)" color="red">
         <SvgIcon icon="Minus" title="Minus" />
         100
@@ -32,32 +58,6 @@
         2
       </DButton>
     </div>
-    <div class="button-row flex-none flex flex-wrap text-lg">
-      <DButton @click="add(100)" color="green">
-        <SvgIcon icon="Plus" title="Plus" />
-        100
-      </DButton>
-      <DButton @click="add(200)" color="green">
-        <SvgIcon icon="Plus" title="Plus" />
-        200
-      </DButton>
-      <DButton @click="add(500)" color="green">
-        <SvgIcon icon="Plus" title="Plus" />
-        500
-      </DButton>
-      <DButton @click="add(1000)" color="green">
-        <SvgIcon icon="Plus" title="Plus" />
-        1000
-      </DButton>
-      <DButton @click="add(2000)" color="green">
-        <SvgIcon icon="Plus" title="Plus" />
-        2000
-      </DButton>
-      <DButton @click="multiply(2)" color="green" title="Double">
-        <SvgIcon icon="Close" />
-        2
-      </DButton>
-    </div>
     <div class="flex-none flex flex-wrap text-lg font-semibold">
       <DTextbox
         class="flex-auto bg-white"
@@ -75,18 +75,18 @@
             Custom
           </span>
           <DButton
-            @click="add(-customAmount)"
-            color="red"
-            title="Subtract custom amount"
-          >
-            <SvgIcon icon="Minus" />
-          </DButton>
-          <DButton
             @click="add(customAmount)"
             color="green"
             title="Add custom amount"
           >
             <SvgIcon icon="Plus" />
+          </DButton>
+          <DButton
+            @click="add(-customAmount)"
+            color="red"
+            title="Subtract custom amount"
+          >
+            <SvgIcon icon="Minus" />
           </DButton>
         </template>
         <template v-slot:after> </template>
