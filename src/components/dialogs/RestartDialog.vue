@@ -48,9 +48,13 @@
     players
 
     <div class="flex justify-center mt-4 px-4">
-      <!-- <DButton @click="close(false)" class="mx-2 w-32 ml-auto md:ml-0" v-if="cancellable">
-            Cancel
-          </DButton> -->
+      <DButton
+        @click="close(false)"
+        class="mx-2 w-32"
+        v-if="cancellable"
+      >
+        Cancel
+      </DButton>
       <DButton @click="close(true)" color="green" class="mx-2 w-32">
         <SvgIcon icon="SwordCross" class="-ml-2 mr-1" />
         Start

@@ -34,7 +34,6 @@
     </div>
 
     <div class="flex-none flex p-4 pt-0">
-      <LifeAudio ref="sounds" class="flex-none z-50" />
       <DButton
         @click="confirmRestart"
         class="flex-none md:w-32"
@@ -58,6 +57,7 @@
         </span>
       </DButton>
       <HypeAudio class="flex-none ml-auto" />
+      <LifeAudio ref="sounds" class="flex-none" />
     </div>
     <RestartDialog
       :cancellable="!firstTime"
