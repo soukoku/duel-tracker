@@ -42,7 +42,7 @@
           Restart
         </span>
       </DButton>
-      <DButton class="flex-none md:w-32" title="Throw dices" disabled>
+      <DButton class="flex-none md:w-32" title="Throw dice" disabled>
         <SvgIcon icon="Dice3" class="md:-ml-2 md:mr-1" />
         <span class="hidden md:inline">
           Dice
