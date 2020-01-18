@@ -51,7 +51,7 @@ export default {
       clearInterval(this.timeout)
     },
     scrambleTo(from, to) {
-      const audioMs = to ? 1100 : 1300 // longer for zero audio
+      const audioMs = to ? 1100 : 1400 // longer for zero audio
       const intervalMs = 25
       let steps = audioMs / intervalMs
 
