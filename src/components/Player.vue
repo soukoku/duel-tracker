@@ -120,23 +120,22 @@ export default {
       // max-width:640px; background-image:url(/imgs/bg-stars.jpg)
     }
   },
-  watch: {
-    'player.life': {
-      handler(val) {
-        if (this.isNew) {
-          this.isNew = false
-        }
-      }
-    }
-  },
   methods: {
+    raiseChange() {
+      this.$emit('change', this.player.life)
+    },
     multiply(factor) {
+      this.isNew = false
       this.player.life = Math.ceil(this.player.life * factor)
+      this.raiseChange()
     },
     add(amount) {
       const parsed = Number(amount)
-      if (!isNaN(parsed))
+      if (!isNaN(parsed)) {
+        this.isNew = false
         this.player.life = Math.max(0, this.player.life + parsed)
+        this.raiseChange()
+      }
     }
   }
 }

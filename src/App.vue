@@ -4,6 +4,7 @@
       v-if="currentPlayer"
       :player="currentPlayer"
       class="flex-auto overflow-auto bg-blue-800 border-b-2 border-blue-700"
+      @change="lifeChanged"
     />
     <div class="flex-none p-4 pt-0 flex justify-center">
       <button
@@ -15,7 +16,8 @@
         :class="{
           'border-transparent hover:border-blue-700 focus:border-blue-700 hover:bg-blue-800 focus:bg-blue-800 text-blue-200':
             p !== currentPlayer,
-          'border-blue-200 hover:bg-blue-600 focus:bg-blue-600 text-blue-100 bg-blue-700': p === currentPlayer
+          'border-blue-200 hover:bg-blue-600 focus:bg-blue-600 text-blue-100 bg-blue-700':
+            p === currentPlayer
         }"
       >
         <strong>
@@ -59,23 +61,17 @@ export default {
       currentPlayer: null
     }
   },
-  watch: {
-    'currentPlayer.life': {
-      handler(val) {
-        if (this.firstTime) return
-
-        if (val > 0) {
-          this.$refs.sounds.playChange()
-        } else {
-          this.$refs.sounds.playZero()
-        }
-      }
-    }
-  },
   mounted() {
     this.confirmRestart()
   },
   methods: {
+    lifeChanged(life) {
+      if (life > 0) {
+        this.$refs.sounds.playChange()
+      } else {
+        this.$refs.sounds.playZero()
+      }
+    },
     confirmRestart() {
       this.showRestartDlg = true
     },
