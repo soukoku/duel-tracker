@@ -72,10 +72,8 @@
           <span
             class="flex items-center whitespace-no-wrap px-2 text-gray-700 bg-gray-100"
           >
-            Custom &gt;
+            Custom
           </span>
-        </template>
-        <template v-slot:after>
           <DButton
             @click="add(-customAmount)"
             color="red"
@@ -91,6 +89,7 @@
             <SvgIcon icon="Plus" />
           </DButton>
         </template>
+        <template v-slot:after> </template>
       </DTextbox>
     </div>
   </div>
@@ -121,20 +120,20 @@ export default {
     }
   },
   methods: {
-    raiseChange() {
-      this.$emit('change', this.player.life)
+    setLife(life) {
+      this.isNew = false
+      if (this.player.life !== life) {
+        this.player.life = life
+        this.$emit('change', life)
+      }
     },
     multiply(factor) {
-      this.isNew = false
-      this.player.life = Math.ceil(this.player.life * factor)
-      this.raiseChange()
+      this.setLife(Math.ceil(this.player.life * factor))
     },
     add(amount) {
       const parsed = Number(amount)
       if (!isNaN(parsed)) {
-        this.isNew = false
-        this.player.life = Math.max(0, this.player.life + parsed)
-        this.raiseChange()
+        this.setLife(Math.max(0, this.player.life + parsed))
       }
     }
   }
