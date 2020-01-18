@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="h-screen w-screen bg-blue-900 flex flex-col">
+  <div id="app" class="h-screen w-screen bg-blue-900 flex flex-col select-none">
     <Player
       v-if="currentPlayer"
       :player="currentPlayer"
