@@ -3,8 +3,7 @@
     class="flex flex-col p-4 bg-no-repeat bg-center bg-cover"
     :style="styles"
   >
-    <LifeAudio ref="sounds" />
-    <LifePoints :points="points" :animate="!isNew" class="mb-3" />
+    <LifePoints :points="player.life" :animate="!isNew" class="mb-3" />
 
     <div class="button-row flex-none flex flex-wrap text-lg">
       <DButton @click="add(-100)" color="red">
@@ -93,26 +92,25 @@
           </DButton>
         </template>
       </DTextbox>
-      <DButton @click="reset" class="flex-none">
-        Restart
-      </DButton>
     </div>
   </div>
 </template>
 
 <script>
-import DButton from './DButton.vue'
 import DTextbox from './DTextbox.vue'
-import LifeAudio from './LifeAudio.vue'
 import LifePoints from './LifePoints.vue'
-import SvgIcon from './SvgIcon.vue'
 
 export default {
-  components: { DButton, DTextbox, LifeAudio, LifePoints, SvgIcon },
+  components: {
+    DTextbox,
+    LifePoints
+  },
+  props: {
+    player: { type: Object, required: true }
+  },
   data() {
     return {
-      points: 8000,
-      isNew: false,
+      isNew: true,
       customAmount: 0
     }
   },
@@ -123,28 +121,22 @@ export default {
     }
   },
   watch: {
-    points(val) {
-      if (this.isNew) {
-        this.isNew = false
-      } else if (val > 0) {
-        this.$refs.sounds.playChange()
-      } else {
-        this.$refs.sounds.playZero()
+    'player.life': {
+      handler(val) {
+        if (this.isNew) {
+          this.isNew = false
+        }
       }
     }
   },
   methods: {
-    reset() {
-      this.isNew = true
-      this.points = 8000
-      this.$refs.sounds.playStart()
-    },
     multiply(factor) {
-      this.points = Math.ceil(this.points * factor)
+      this.player.life = Math.ceil(this.player.life * factor)
     },
     add(amount) {
       const parsed = Number(amount)
-      if (!isNaN(parsed)) this.points = Math.max(0, this.points + parsed)
+      if (!isNaN(parsed))
+        this.player.life = Math.max(0, this.player.life + parsed)
     }
   }
 }

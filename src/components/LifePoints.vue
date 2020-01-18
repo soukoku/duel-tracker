@@ -2,7 +2,7 @@
   <div
     class="lp-text flex items-center justify-center
         font-serif italic text-yellow-400"
-    aria-label="Life points"
+    :title="display + ' life points'"
   >
     {{ display }}
   </div>
@@ -47,7 +47,7 @@ export default {
 </script>
 <style>
 .lp-text {
-  font-size: 4em;
+  font-size: 3.5em;
   text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
 }
 @screen md {
