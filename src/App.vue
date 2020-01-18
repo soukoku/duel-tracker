@@ -54,9 +54,7 @@
           Coin
         </span>
       </DButton>
-      <DButton class="flex-none ml-auto" title="Hype it up!" disabled>
-        <SvgIcon icon="Fire" />
-      </DButton>
+      <HypeAudio class="flex-none ml-auto" />
     </div>
     <RestartDialog
       :cancellable="!firstTime"
@@ -69,12 +67,14 @@
 <script>
 import RestartDialog from '@/components/RestartDialog.vue'
 import LifeAudio from '@/components/LifeAudio.vue'
+import HypeAudio from '@/components/HypeAudio.vue'
 import Player from '@/components/Player.vue'
 
 export default {
   components: {
     RestartDialog,
     LifeAudio,
+    HypeAudio,
     Player
   },
   data() {

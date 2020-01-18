@@ -1,7 +1,7 @@
 <template>
   <div>
     <DButton
-      :title="volume ? 'Sound effect enabled' : 'Sound effect disabled'"
+      :title="volume ? 'Mute sound' : 'Unmute sound'"
       @click="toggle"
     >
       <SvgIcon :icon="volume ? 'VolumeHigh' : 'VolumeOff'" />
