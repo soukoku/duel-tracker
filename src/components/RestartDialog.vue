@@ -2,7 +2,7 @@
   <transition name="slide-up">
     <div
       v-if="visible"
-      class="absolute h-screen w-screen top-0 left-0"
+      class="absolute h-screen w-screen top-0 left-0 z-50"
       @keydown.esc="tryCancel"
     >
       <div
@@ -21,7 +21,7 @@
             v-for="(pt, idx) in lifeList"
             :key="idx"
             :points="pt"
-            class="transition mx-2 border px-4 cursor-pointer focus:outline-none"
+            class="transition mx-2 border rounded-sm px-4 cursor-pointer focus:outline-none"
             :class="{
               'border-blue-100 bg-blue-700 hover:bg-blue-500 focus:bg-blue-500':
                 life === pt,
