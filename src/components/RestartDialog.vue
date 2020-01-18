@@ -62,6 +62,7 @@
             Cancel
           </DButton>
           <DButton @click="close(true)" color="green" class="mx-2 w-32">
+            <SvgIcon icon="SwordCross" class="-ml-2 mr-1" />
             Start
           </DButton>
         </div>

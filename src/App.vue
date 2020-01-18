@@ -1,11 +1,12 @@
 <template>
   <div id="app" class="h-screen w-screen bg-blue-900 flex flex-col select-none">
-    <Player
-      v-if="currentPlayer"
-      :player="currentPlayer"
-      class="flex-auto overflow-auto bg-blue-800 border-b-2 border-blue-700"
-      @change="lifeChanged"
-    />
+    <div class="flex-auto overflow-auto bg-blue-800 border-b-2 border-blue-700">
+      <Player
+        v-if="currentPlayer"
+        :player="currentPlayer"
+        @change="lifeChanged"
+      />
+    </div>
     <div class="flex-none p-4 pt-0 flex justify-center">
       <button
         v-for="(p, idx) in players"
@@ -19,6 +20,7 @@
           'border-blue-200 hover:bg-blue-600 focus:bg-blue-600 text-blue-100 bg-blue-700':
             p === currentPlayer
         }"
+        :title="`Switch to ${p.name}`"
       >
         <strong>
           {{ p.name }}
@@ -28,10 +30,32 @@
       </button>
     </div>
 
-    <div class="flex-none flex p-4">
-      <LifeAudio ref="sounds" class="z-50" />
-      <DButton @click="confirmRestart" class="flex-none w-32">
-        Restart
+    <div class="flex-none flex p-4 pt-0">
+      <LifeAudio ref="sounds" class="flex-none z-50" />
+      <DButton
+        @click="confirmRestart"
+        class="flex-none md:w-32"
+        title="Track a new game"
+      >
+        <SvgIcon icon="Restart" class="md:-ml-2 md:mr-1" />
+        <span class="hidden md:inline">
+          Restart
+        </span>
+      </DButton>
+      <DButton class="flex-none md:w-32" title="Throw dices" disabled>
+        <SvgIcon icon="Dice3" class="md:-ml-2 md:mr-1" />
+        <span class="hidden md:inline">
+          Dice
+        </span>
+      </DButton>
+      <DButton class="flex-none md:w-32" title="Toss coins" disabled>
+        <SvgIcon icon="Coin" class="md:-ml-2 md:mr-1" />
+        <span class="hidden md:inline">
+          Coin
+        </span>
+      </DButton>
+      <DButton class="flex-none ml-auto" title="Hype it up!" disabled>
+        <SvgIcon icon="Fire" />
       </DButton>
     </div>
     <RestartDialog
