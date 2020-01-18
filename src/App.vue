@@ -44,13 +44,21 @@
           Restart
         </span>
       </DButton>
-      <DButton class="flex-none md:w-32" title="Throw dice" disabled>
+      <DButton
+        @click="showDiceDlg = true"
+        class="flex-none md:w-32"
+        title="Throw dice"
+      >
         <SvgIcon icon="Dice3" class="md:-ml-2 md:mr-1" />
         <span class="hidden md:inline">
           Dice
         </span>
       </DButton>
-      <DButton class="flex-none md:w-32" title="Toss coins" disabled>
+      <DButton
+        @click="showCoinDlg = true"
+        class="flex-none md:w-32"
+        title="Toss coins"
+      >
         <SvgIcon icon="Coin" class="md:-ml-2 md:mr-1" />
         <span class="hidden md:inline">
           Coin
@@ -64,10 +72,14 @@
       :visible="showRestartDlg"
       @close="closeRestartPrompt"
     />
+    <CoinTossDialog :visible="showCoinDlg" @close="showCoinDlg = false" />
+    <DiceThrowDialog :visible="showDiceDlg" @close="showDiceDlg = false" />
   </div>
 </template>
 
 <script>
+import CoinTossDialog from '@/components/dialogs/CoinTossDialog.vue'
+import DiceThrowDialog from '@/components/dialogs/DiceThrowDialog.vue'
 import RestartDialog from '@/components/dialogs/RestartDialog.vue'
 import LifeAudio from '@/components/LifeAudio.vue'
 import HypeAudio from '@/components/HypeAudio.vue'
@@ -75,6 +87,8 @@ import Player from '@/components/Player.vue'
 
 export default {
   components: {
+    CoinTossDialog,
+    DiceThrowDialog,
     RestartDialog,
     LifeAudio,
     HypeAudio,
@@ -84,6 +98,8 @@ export default {
     return {
       firstTime: true,
       showRestartDlg: false,
+      showCoinDlg: false,
+      showDiceDlg: false,
       players: [],
       currentPlayer: null
     }
