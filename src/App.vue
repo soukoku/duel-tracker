@@ -13,6 +13,7 @@
       <button
         v-for="(p, idx) in players"
         :key="idx"
+        type="button"
         @click="currentPlayer = p"
         style="margin-top:-2px;"
         class="transition border-t-2 mx-1 py-2 px-4 md:px-8 rounded-b-lg focus:outline-none focus:shadow-outline z-10"
