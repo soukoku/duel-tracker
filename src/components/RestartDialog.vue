@@ -2,7 +2,7 @@
   <transition name="slide-up">
     <div
       v-if="visible"
-      class="absolute h-screen w-screen top-0 left-0 z-50"
+      class="absolute h-screen w-screen top-0 left-0 z-40"
       @keydown.esc="tryCancel"
     >
       <div

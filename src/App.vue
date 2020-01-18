@@ -29,7 +29,7 @@
     </div>
 
     <div class="flex-none flex p-4">
-      <LifeAudio ref="sounds" />
+      <LifeAudio ref="sounds" class="z-50" />
       <DButton @click="confirmRestart" class="flex-none w-32">
         Restart
       </DButton>
