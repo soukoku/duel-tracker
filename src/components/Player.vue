@@ -3,6 +3,9 @@
     class="flex flex-col p-4 bg-no-repeat bg-center bg-cover"
     :style="styles"
   >
+    <div class="flex-none text-center text-border text-yellow-400">
+      {{ player.name }}
+    </div>
     <LifePoints :points="player.life" :animate="!isNew" class="mb-3" />
 
     <div class="button-row flex-none flex flex-wrap text-lg">

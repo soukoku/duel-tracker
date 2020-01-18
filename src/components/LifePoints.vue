@@ -1,6 +1,6 @@
 <template>
   <div
-    class="lp-text flex items-center justify-center
+    class="lp-text text-border flex items-center justify-center
         font-serif italic text-yellow-400"
     :title="display + ' life points'"
   >
@@ -48,7 +48,6 @@ export default {
 <style>
 .lp-text {
   font-size: 3.5em;
-  text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
 }
 @screen md {
   .lp-text {
