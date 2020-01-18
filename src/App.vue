@@ -2,8 +2,10 @@
   <div id="app" class="h-screen w-screen bg-blue-900 flex flex-col select-none">
     <div class="flex-auto overflow-auto bg-blue-800 border-b-2 border-blue-700">
       <Player
-        v-if="currentPlayer"
-        :player="currentPlayer"
+        v-for="(p, idx) in players"
+        :key="idx"
+        v-show="currentPlayer === p"
+        :player="p"
         @change="lifeChanged"
       />
     </div>

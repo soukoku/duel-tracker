@@ -6,7 +6,11 @@
     <div class="flex-none text-center text-border text-yellow-400">
       {{ player.name }}
     </div>
-    <LifePoints :points="player.life" :animate="!isNew" class="flex-auto mb-3" />
+    <LifePoints
+      :points="player.life"
+      :animate="!isNew"
+      class="flex-auto mb-3"
+    />
 
     <div class="button-row flex-none flex flex-wrap text-lg">
       <DButton @click="add(100)" color="green">
@@ -114,6 +118,11 @@ export default {
     return {
       isNew: true,
       customAmount: 0
+    }
+  },
+  watch: {
+    player() {
+      this.isNew = true
     }
   },
   computed: {

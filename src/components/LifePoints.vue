@@ -9,6 +9,20 @@
 </template>
 
 <script>
+function randomBetween(min, max) {
+  // ensure max > min
+  if (min > max) {
+    let tmp = min
+    min = max
+    max = tmp
+  }
+  // use at least 2 digits for max during display scramble
+  if (min < 10) min = 99
+
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 export default {
   props: {
     animate: { type: Boolean },
@@ -23,7 +37,7 @@ export default {
     points(val) {
       this.cleanUp()
       if (this.animate) {
-        this.animateHandle = this.scrollNumber(this.display, val)
+        this.scrambleTo(this.display, val)
       } else {
         this.display = val
       }
@@ -34,13 +48,21 @@ export default {
   },
   methods: {
     cleanUp() {
-      if (this.animateHandle) this.animateHandle.stop()
+      clearInterval(this.timeout)
     },
-    scrollNumber(from, to) {
-      this.display = to
-      return {
-        stop() {}
-      }
+    scrambleTo(from, to) {
+      const audioMs = to ? 1100 : 1300 // longer for zero audio
+      const intervalMs = 25
+      let steps = audioMs / intervalMs
+
+      this.timeout = setInterval(() => {
+        this.display = randomBetween(from, to)
+        steps--
+        if (steps === 0) {
+          this.display = to
+          this.cleanUp()
+        }
+      }, intervalMs)
     }
   }
 }
