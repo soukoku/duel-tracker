@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import RestartDialog from '@/components/RestartDialog.vue'
+import RestartDialog from '@/components/dialogs/RestartDialog.vue'
 import LifeAudio from '@/components/LifeAudio.vue'
 import HypeAudio from '@/components/HypeAudio.vue'
 import Player from '@/components/Player.vue'
