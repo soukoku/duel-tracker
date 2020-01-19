@@ -52,7 +52,7 @@
         <DButton
           @click="showCdDlg = true"
           class="flex-none"
-          title="Toss coin or throw dice"
+          title="Toss coin or roll dice"
         >
           <SvgIcon icon="Coin" class="flex-none md:-ml-2 md:mr-1" />
           <SvgIcon icon="Dice3" class="flex-none md:mr-1" />
