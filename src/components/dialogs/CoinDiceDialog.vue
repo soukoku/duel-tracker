@@ -6,7 +6,7 @@
     @close="close"
   >
     <div class="flex flex-wrap justify-center px-4 mb-4">
-      <transition-group tag="div" class="flex flex-wrap justify-center">
+      <!-- <transition-group tag="div" class="flex flex-wrap justify-center"> -->
         <span
           v-for="(coin, idx) in coins"
           :key="idx"
@@ -19,7 +19,7 @@
             TAIL
           </span>
         </span>
-      </transition-group>
+      <!-- </transition-group> -->
       <button
         type="button"
         title="Clear coin rolls"
@@ -32,7 +32,7 @@
     </div>
 
     <div class="flex flex-wrap justify-center px-4 mb-4">
-      <transition-group tag="div" class="flex flex-wrap justify-center">
+      <!-- <transition-group tag="div" class="flex flex-wrap justify-center"> -->
         <span
           v-for="(die, idx) in dice"
           :key="idx"
@@ -73,7 +73,7 @@
             <circle cx="18" cy="18" r="2" />
           </SvgIcon>
         </span>
-      </transition-group>
+      <!-- </transition-group> -->
       <button
         type="button"
         title="Clear dice rolls"
