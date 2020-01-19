@@ -44,7 +44,7 @@ export default {
           }`
         }
       }
-      return `bg-gray-300 text-gray-800 ${
+      return `bg-gray-300 ${
         this.disabled
           ? 'text-gray-500'
           : 'text-gray-800 hover:bg-gray-600 hover:text-gray-100 focus:bg-gray-600 focus:text-gray-100'
