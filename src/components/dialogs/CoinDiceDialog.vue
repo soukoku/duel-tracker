@@ -7,15 +7,15 @@
   >
     Not implemented yet
 
-    <div class="equal-child flex justify-center mt-4 px-4">
-      <DButton @click="close" class="mx-2">
+    <div class="equal-child flex justify-center sp mt-4 px-4">
+      <DButton @click="close" class="mx-2" style="max-width:10em">
         Close
       </DButton>
-      <DButton @click="tossCoin" class="mx-2" color="green">
+      <DButton @click="tossCoin" class="mx-2" style="max-width:10em" color="green">
         <SvgIcon icon="Coin" class="-ml-2 mr-1" />
         Toss
       </DButton>
-      <DButton @click="throwDice" class="mx-2" color="green">
+      <DButton @click="throwDice" class="mx-2" style="max-width:10em" color="green">
         <SvgIcon icon="Dice3" class="-ml-2 mr-1" />
         Throw
       </DButton>

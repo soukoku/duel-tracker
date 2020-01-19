@@ -3,14 +3,16 @@
     class="flex flex-col p-4 bg-no-repeat bg-center bg-cover"
     :style="styles"
   >
-    <div class="flex-none text-center text-border text-yellow-400">
-      {{ player.name }}
+    <div class="flex-none flex">
+      <div class="flex-none text-border text-yellow-400 md:text-xl">
+        {{ player.name }}
+      </div>
+      <LifePoints
+        :points="player.life"
+        :animate="!isNew"
+        class="flex-auto mb-3"
+      />
     </div>
-    <LifePoints
-      :points="player.life"
-      :animate="!isNew"
-      class="flex-auto mb-3"
-    />
 
     <div class="equal-child flex-none flex flex-wrap text-lg">
       <DButton @click="add(100)" color="green">
