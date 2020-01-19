@@ -20,7 +20,7 @@
           type="button"
           @click="currentPlayer = p"
           style="margin-top:-2px;"
-          class="transition border-t-2 mx-1 py-2 px-4 md:px-8 rounded-b-lg focus:outline-none focus:shadow-outline z-10"
+          class="transition border-t-2 mx-1 p-2 md:px-8 rounded-b-lg focus:outline-none focus:shadow-outline z-10"
           :class="{
             'border-transparent hover:border-blue-700 focus:border-blue-700 hover:bg-blue-800 focus:bg-blue-800 text-blue-200':
               p !== currentPlayer,
@@ -29,11 +29,13 @@
           }"
           :title="`Switch to ${p.name}`"
         >
-          <strong>
+          <strong class="whitespace-no-wrap">
             {{ p.name }}
           </strong>
           <br />
-          {{ p.life }}
+          <span class="text-yellow-400">
+            {{ p.life }}
+          </span>
         </button>
       </div>
 

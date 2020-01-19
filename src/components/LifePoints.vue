@@ -1,7 +1,7 @@
 <template>
   <div
     class="lp-text text-border flex items-center justify-center
-        font-serif italic text-yellow-400"
+        leading-tight font-serif italic text-yellow-400"
     :title="display + ' life points'"
   >
     {{ display }}
@@ -51,7 +51,7 @@ export default {
       clearInterval(this.timeout)
     },
     scrambleTo(from, to) {
-      const audioMs = to ? 1100 : 1400 // longer for zero audio
+      const audioMs = to ? 1200 : 1400 // longer for zero audio
       const intervalMs = 25
       let steps = audioMs / intervalMs
 
@@ -73,7 +73,7 @@ export default {
 }
 @screen md {
   .lp-text {
-    font-size: 7em;
+    font-size: 6em;
   }
 }
 </style>

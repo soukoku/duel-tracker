@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col p-4 max-w-3xl">
-    <div class="flex-none flex">
+    <div class="flex-none flex mb-3">
       <div
         v-if="showPlayer"
         class="flex-none text-border text-yellow-400 md:text-xl"
@@ -10,11 +10,17 @@
       <LifePoints
         :points="player.life"
         :animate="!isNew"
-        class="flex-auto mb-3"
+        class="flex-auto"
       />
     </div>
 
-    <div class="flex-auto flex flex-col md:flex-row">
+    <div class="flex-auto flex flex-col md:flex-row mb-4 overflow-auto">
+      <NumberPad
+        class="md:w-1/2"
+        :maxlength="6"
+        :amount.sync="customAmount"
+        @apply="add"
+      />
       <div class="flex flex-col md:w-1/2">
         <div class="equal-child flex-none flex flex-wrap text-lg">
           <DButton @click="add(100)" color="green">
@@ -67,10 +73,7 @@
           </DButton>
         </div>
       </div>
-      <NumberPad class="md:w-1/2" :amount.sync="customAmount" @apply="add" />
     </div>
-
-    <div class="flex-none flex flex-wrap text-lg font-semibold"></div>
   </div>
 </template>
 
