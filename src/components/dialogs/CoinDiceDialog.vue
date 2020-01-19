@@ -11,7 +11,7 @@
           v-for="(coin, idx) in coins"
           :key="idx"
           class="m-2 w-16 h-16 rounded-full flex items-center justify-center border-2 border-yellow-700 text-yellow-900"
-          :class="{ 'bg-yellow-500': coin, 'bg-yellow-600': !coin }"
+          :class="{ 'bg-yellow-400': coin, 'bg-yellow-500': !coin }"
           :title="coin ? 'Head' : 'Tail'"
         >
           <SvgIcon v-if="coin" icon="AccountTie" :size="40" />

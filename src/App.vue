@@ -2,7 +2,7 @@
   <div id="app" class="h-screen w-screen bg-blue-900 select-none">
     <div class="h-full flex flex-col" :aria-hidden="hasModalDialog">
       <div
-        class="flex-auto overflow-auto bg-blue-800 border-b-2 border-blue-700"
+        class="flex-auto overflow-auto bg-blue-800 border-b-2 border-blue-700 flex justify-center"
       >
         <Player
           v-for="p in players"
@@ -37,7 +37,7 @@
         </button>
       </div>
 
-      <div class="flex-none flex p-4">
+      <div class="flex-none flex p-4 lg:mx-auto lg:w-1/2 max-w-full">
         <DButton
           id="restart-btn"
           @click="showRestartDlg = true"
