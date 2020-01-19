@@ -9,10 +9,11 @@
           :key="p.name"
           v-show="currentPlayer === p"
           :player="p"
+          :showPlayer="players.length > 1"
           @change="lifeChanged"
         />
       </div>
-      <div class="flex-none p-4 pt-0 flex justify-center">
+      <div v-if="players.length > 1" class="flex-none px-4 flex justify-center">
         <button
           v-for="(p, idx) in players"
           :key="idx"
@@ -36,7 +37,7 @@
         </button>
       </div>
 
-      <div class="flex-none flex p-4 pt-0">
+      <div class="flex-none flex p-4">
         <DButton
           id="restart-btn"
           @click="showRestartDlg = true"

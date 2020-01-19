@@ -4,7 +4,10 @@
     :style="styles"
   >
     <div class="flex-none flex">
-      <div class="flex-none text-border text-yellow-400 md:text-xl">
+      <div
+        v-if="showPlayer"
+        class="flex-none text-border text-yellow-400 md:text-xl"
+      >
         {{ player.name }}
       </div>
       <LifePoints
@@ -114,7 +117,8 @@ export default {
     LifePoints
   },
   props: {
-    player: { type: Object, required: true }
+    player: { type: Object, required: true },
+    showPlayer: Boolean
   },
   data() {
     return {
