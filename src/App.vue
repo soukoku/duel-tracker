@@ -41,14 +41,14 @@
 
       <div class="flex-none flex p-4 lg:mx-auto lg:w-1/2 max-w-full">
         <DButton
-          id="restart-btn"
-          @click="showRestartDlg = true"
-          class="flex-none md:w-32"
+          id="newgame-btn"
+          @click="showNewGameDlg = true"
+          class="flex-none"
           title="Track a new game"
         >
           <SvgIcon icon="Restart" class="md:-ml-2 md:mr-1" />
           <span class="hidden md:inline">
-            Restart
+            New game
           </span>
         </DButton>
         <DButton
@@ -56,7 +56,7 @@
           class="flex-none"
           title="Toss coin or roll dice"
         >
-          <SvgIcon icon="Coin" class="flex-none md:-ml-2 md:mr-1" />
+          <SvgIcon icon="Coin" class="flex-none md:-ml-2 mr-1" />
           <SvgIcon icon="Dice3" class="flex-none md:mr-1" />
           <span class="hidden md:inline">
             Coin and dice
@@ -66,9 +66,9 @@
         <LifeAudio ref="sounds" class="flex-none" />
       </div>
     </div>
-    <RestartDialog
+    <NewGameDialog
       :cancellable="!firstTime"
-      :visible="showRestartDlg"
+      :visible="showNewGameDlg"
       @close="closeRestartPrompt"
     />
     <CoinDiceDialog :visible="showCdDlg" @close="showCdDlg = false" />
@@ -77,7 +77,7 @@
 
 <script>
 import CoinDiceDialog from '@/components/dialogs/CoinDiceDialog.vue'
-import RestartDialog from '@/components/dialogs/RestartDialog.vue'
+import NewGameDialog from '@/components/dialogs/NewGameDialog.vue'
 import LifeAudio from '@/components/LifeAudio.vue'
 import HypeAudio from '@/components/HypeAudio.vue'
 import Player from '@/components/Player.vue'
@@ -85,7 +85,7 @@ import Player from '@/components/Player.vue'
 export default {
   components: {
     CoinDiceDialog,
-    RestartDialog,
+    NewGameDialog,
     LifeAudio,
     HypeAudio,
     Player
@@ -93,7 +93,7 @@ export default {
   data() {
     return {
       firstTime: true,
-      showRestartDlg: true,
+      showNewGameDlg: true,
       showCdDlg: false,
       players: [],
       currentPlayer: null
@@ -101,7 +101,7 @@ export default {
   },
   computed: {
     hasModalDialog() {
-      return this.showRestartDlg || this.showCdDlg
+      return this.showNewGameDlg || this.showCdDlg
     }
   },
   methods: {
@@ -114,7 +114,7 @@ export default {
     },
     closeRestartPrompt(params) {
       this.firstTime = false
-      this.showRestartDlg = false
+      this.showNewGameDlg = false
       if (params) {
         this.players = []
         for (let i = 0; i < params.players; ) {
@@ -128,7 +128,7 @@ export default {
       }
       // somehow nexttick doesn't work here
       setTimeout(() => {
-        document.querySelector('#restart-btn').focus()
+        document.querySelector('#newgame-btn').focus()
       }, 50)
     }
   }
