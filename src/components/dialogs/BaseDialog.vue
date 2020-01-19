@@ -15,6 +15,7 @@
         class="absolute bottom-0 left-0 right-0 bg-blue-900 text-blue-100 rounded-t-sm py-4 text-center max-h-full overflow-auto"
         role="dialog"
         :aria-label="ariaLabel"
+        :aria-modal="modal"
       >
         <slot></slot>
       </div>
@@ -29,22 +30,37 @@ export default {
   props: {
     visible: Boolean,
     cancellable: Boolean,
-    ariaLabel: String
+    ariaLabel: String,
+    modal: { type: Boolean, default: true }
+  },
+  data() {
+    return {
+      mounted: false
+    }
   },
   watch: {
     visible(val) {
       if (val) {
-        this.$nextTick(() => {
-          if (this.$el) {
-            this.trap = createFocusTrap(this.$el).activate()
-          }
-        })
+        if (this.mounted) this.setupFocusTrap()
       } else {
         this.cleanUp()
       }
     }
   },
+  mounted() {
+    if (this.visible) {
+      this.setupFocusTrap()
+    }
+    this.mounted = true
+  },
   methods: {
+    setupFocusTrap() {
+      this.$nextTick(() => {
+        if (this.$el) {
+          this.trap = createFocusTrap(this.$el).activate()
+        }
+      })
+    },
     cleanUp() {
       if (this.trap) this.trap.deactivate()
     },
