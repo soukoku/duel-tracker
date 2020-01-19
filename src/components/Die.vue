@@ -36,10 +36,10 @@
       <circle cx="18" cy="12" r="2" />
       <circle cx="18" cy="18" r="2" />
     </SvgIcon>
-    <!-- <audio preload="auto" ref="audio" class="hidden">
+    <audio preload="auto" ref="audio" class="hidden">
       <source src="sounds/dice.mp3" type="audio/mpeg" />
       <source src="sounds/dice.ogg" type="audio/ogg; codecs=vorbis" />
-    </audio> -->
+    </audio>
   </span>
 </template>
 
@@ -47,14 +47,14 @@
 export default {
   props: {
     value: Number
+  },
+  mounted() {
+    // play sound once
+    const vol = this.$store.state.volume
+    if (vol) {
+      this.$refs.audio.volume = vol
+      this.$refs.audio.play()
+    }
   }
-  // mounted() {
-  //   // play sound once
-  //   const vol = this.$store.state.volume
-  //   if (vol) {
-  //     this.$refs.audio.volume = vol
-  //     this.$refs.audio.play()
-  //   }
-  // }
 }
 </script>
