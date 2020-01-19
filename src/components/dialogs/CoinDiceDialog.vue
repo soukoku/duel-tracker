@@ -7,18 +7,7 @@
   >
     <div class="flex flex-wrap justify-center px-4 mb-4">
       <!-- <transition-group tag="div" class="flex flex-wrap justify-center"> -->
-        <span
-          v-for="(coin, idx) in coins"
-          :key="idx"
-          class="m-2 w-16 h-16 rounded-full flex items-center justify-center border-2 border-yellow-700 text-yellow-900"
-          :class="{ 'bg-yellow-400': coin, 'bg-yellow-500': !coin }"
-          :title="coin ? 'Head' : 'Tail'"
-        >
-          <SvgIcon v-if="coin" icon="AccountTie" :size="40" />
-          <span v-if="!coin" class="font-bold tracking-tighter">
-            TAIL
-          </span>
-        </span>
+      <Coin v-for="(coin, idx) in coins" :key="idx" :head="!!coin" />
       <!-- </transition-group> -->
       <button
         type="button"
@@ -33,46 +22,7 @@
 
     <div class="flex flex-wrap justify-center px-4 mb-4">
       <!-- <transition-group tag="div" class="flex flex-wrap justify-center"> -->
-        <span
-          v-for="(die, idx) in dice"
-          :key="idx"
-          class="m-2 w-16 h-16 rounded flex items-center justify-center border-2 border-gray-300 bg-gray-200 text-black"
-          :title="die"
-        >
-          <SvgIcon v-if="die === 1" size="100%">
-            <circle cx="12" cy="12" r="4" fill="red" />
-          </SvgIcon>
-          <SvgIcon v-if="die === 2" size="100%">
-            <circle cx="6" cy="6" r="2" />
-            <circle cx="18" cy="18" r="2" />
-          </SvgIcon>
-          <SvgIcon v-if="die === 3" size="100%">
-            <circle cx="6" cy="6" r="2" />
-            <circle cx="12" cy="12" r="2" />
-            <circle cx="18" cy="18" r="2" />
-          </SvgIcon>
-          <SvgIcon v-if="die === 4" size="100%">
-            <circle cx="6" cy="6" r="2" />
-            <circle cx="6" cy="18" r="2" />
-            <circle cx="18" cy="6" r="2" />
-            <circle cx="18" cy="18" r="2" />
-          </SvgIcon>
-          <SvgIcon v-if="die === 5" size="100%">
-            <circle cx="6" cy="6" r="2" />
-            <circle cx="6" cy="18" r="2" />
-            <circle cx="18" cy="6" r="2" />
-            <circle cx="18" cy="18" r="2" />
-            <circle cx="12" cy="12" r="2" />
-          </SvgIcon>
-          <SvgIcon v-if="die === 6" size="100%">
-            <circle cx="6" cy="6" r="2" />
-            <circle cx="6" cy="12" r="2" />
-            <circle cx="6" cy="18" r="2" />
-            <circle cx="18" cy="6" r="2" />
-            <circle cx="18" cy="12" r="2" />
-            <circle cx="18" cy="18" r="2" />
-          </SvgIcon>
-        </span>
+      <Die v-for="(die, idx) in dice" :key="idx" :value="die" />
       <!-- </transition-group> -->
       <button
         type="button"
@@ -115,6 +65,8 @@
 
 <script>
 import BaseDialog from './BaseDialog.vue'
+import Coin from '@/components/Coin.vue'
+import Die from '@/components/Die.vue'
 
 function getRandomNum() {
   var array = new Uint32Array(1)
@@ -123,7 +75,7 @@ function getRandomNum() {
 }
 
 export default {
-  components: { BaseDialog },
+  components: { BaseDialog, Coin, Die },
   props: {
     visible: Boolean
   },
