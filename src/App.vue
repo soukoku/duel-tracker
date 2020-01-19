@@ -2,8 +2,8 @@
   <div id="app" class="h-screen w-screen bg-blue-900 flex flex-col select-none">
     <div class="flex-auto overflow-auto bg-blue-800 border-b-2 border-blue-700">
       <Player
-        v-for="(p, idx) in players"
-        :key="idx"
+        v-for="p in players"
+        :key="p.name"
         v-show="currentPlayer === p"
         :player="p"
         @change="lifeChanged"
@@ -45,23 +45,14 @@
         </span>
       </DButton>
       <DButton
-        @click="showDiceDlg = true"
-        class="flex-none md:w-32"
-        title="Throw dice"
+        @click="showCdDlg = true"
+        class="flex-none"
+        title="Toss coin or throw dice"
       >
-        <SvgIcon icon="Dice3" class="md:-ml-2 md:mr-1" />
+        <SvgIcon icon="Coin" class="flex-none md:-ml-2 md:mr-1" />
+        <SvgIcon icon="Dice3" class="flex-none md:mr-1" />
         <span class="hidden md:inline">
-          Dice
-        </span>
-      </DButton>
-      <DButton
-        @click="showCoinDlg = true"
-        class="flex-none md:w-32"
-        title="Toss coins"
-      >
-        <SvgIcon icon="Coin" class="md:-ml-2 md:mr-1" />
-        <span class="hidden md:inline">
-          Coin
+          Coin and dice
         </span>
       </DButton>
       <HypeAudio class="flex-none ml-auto" />
@@ -72,14 +63,12 @@
       :visible="showRestartDlg"
       @close="closeRestartPrompt"
     />
-    <CoinTossDialog :visible="showCoinDlg" @close="showCoinDlg = false" />
-    <DiceThrowDialog :visible="showDiceDlg" @close="showDiceDlg = false" />
+    <CoinDiceDialog :visible="showCdDlg" @close="showCdDlg = false" />
   </div>
 </template>
 
 <script>
-import CoinTossDialog from '@/components/dialogs/CoinTossDialog.vue'
-import DiceThrowDialog from '@/components/dialogs/DiceThrowDialog.vue'
+import CoinDiceDialog from '@/components/dialogs/CoinDiceDialog.vue'
 import RestartDialog from '@/components/dialogs/RestartDialog.vue'
 import LifeAudio from '@/components/LifeAudio.vue'
 import HypeAudio from '@/components/HypeAudio.vue'
@@ -87,8 +76,7 @@ import Player from '@/components/Player.vue'
 
 export default {
   components: {
-    CoinTossDialog,
-    DiceThrowDialog,
+    CoinDiceDialog,
     RestartDialog,
     LifeAudio,
     HypeAudio,
@@ -98,8 +86,7 @@ export default {
     return {
       firstTime: true,
       showRestartDlg: false,
-      showCoinDlg: false,
-      showDiceDlg: false,
+      showCdDlg: false,
       players: [],
       currentPlayer: null
     }
