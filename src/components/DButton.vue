@@ -3,7 +3,7 @@
     :type="type"
     :disabled="disabled"
     :class="allCls"
-    class="transition flex items-center justify-center font-semibold m-1 px-4 py-4 rounded-sm focus:outline-none focus:shadow-outline"
+    class="transition flex items-center justify-center font-semibold m-1 rounded-sm focus:outline-none focus:shadow-outline"
     @click="$emit('click', $event)"
   >
     <slot></slot>
@@ -15,11 +15,14 @@ export default {
   props: {
     color: String,
     type: { type: String, default: 'button' },
-    disabled: Boolean
+    disabled: Boolean,
+    customSize: Boolean
   },
   computed: {
     allCls() {
-      return `${this.miscCss} ${this.colorCss}`
+      return `${this.miscCss} ${this.colorCss} ${
+        this.customSize ? '' : 'px-4 py-4'
+      }`
     },
     miscCss() {
       if (this.disabled) {

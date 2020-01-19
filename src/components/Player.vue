@@ -14,15 +14,15 @@
       />
     </div>
 
-    <div class="flex-auto flex flex-col md:flex-row mb-4 overflow-auto">
+    <div class="flex-auto flex flex-col md:flex-row mb-2 overflow-auto">
       <NumberPad
         class="md:w-1/2"
         :maxlength="6"
         :amount.sync="customAmount"
         @apply="add"
       />
-      <div class="flex flex-col md:w-1/2">
-        <div class="equal-child flex-none flex flex-wrap text-lg">
+      <div class="flex flex-col md:w-1/2 text-xl">
+        <div class="equal-child flex-none flex flex-wrap">
           <DButton @click="add(100)" color="green">
             <SvgIcon icon="Plus" title="Plus" />
             100
@@ -47,7 +47,7 @@
             Double
           </DButton>
         </div>
-        <div class="equal-child flex-none flex flex-wrap text-lg">
+        <div class="equal-child flex-none flex flex-wrap">
           <DButton @click="add(-100)" color="red">
             <SvgIcon icon="Minus" title="Minus" />
             100

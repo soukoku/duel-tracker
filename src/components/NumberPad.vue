@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col md:w-1/2 text-xl font-bold">
     <div
-      class="flex-none flex items-stretch bg-white border-2 border-gray-300 text-gray-800 rounded-sm m-1"
+      class="flex-none flex items-stretch bg-white text-gray-800 rounded-sm m-1"
     >
       <!-- <template v-slot:before>
             <span
@@ -10,14 +10,16 @@
               Delta
             </span>
           </template> -->
-      <div class="flex-auto flex items-center justify-end px-2 text-gray-700">
+      <div class="flex-auto flex items-center justify-end px-2 py-4 text-gray-700">
         {{ amount }}
       </div>
-      <div class="flex-none flex">
+      <div class="flex-none flex items-stretch">
         <DButton
           @click="$emit('apply', amount)"
           color="green"
           title="Add custom amount"
+          customSize
+          class="px-4 py-0"
         >
           <SvgIcon icon="Plus" />
         </DButton>
@@ -25,6 +27,8 @@
           @click="$emit('apply', -amount)"
           color="red"
           title="Subtract custom amount"
+          customSize
+          class="px-4 py-0"
         >
           <SvgIcon icon="Minus" />
         </DButton>
