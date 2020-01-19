@@ -12,3 +12,8 @@
 .text-border {
   text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
 }
+
+.equal-child > * {
+  flex-grow: 1;
+  flex-basis: 0;
+}

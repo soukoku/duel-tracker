@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-stretch border-2 border-gray-400 text-gray-800 rounded-sm m-1"
+    class="flex items-stretch border-2 border-gray-300 text-gray-800 rounded-sm m-1"
     :class="{ 'shadow-outline': focused }"
   >
     <slot name="before"></slot>

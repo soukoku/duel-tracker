@@ -7,17 +7,17 @@
   >
     Not implemented yet
 
-    <div class="flex justify-center mt-4 px-4">
-      <DButton @click="close" class="mx-2 w-32">
+    <div class="equal-child flex justify-center mt-4 px-4">
+      <DButton @click="close" class="mx-2">
         Close
       </DButton>
       <DButton @click="tossCoin" class="mx-2" color="green">
         <SvgIcon icon="Coin" class="-ml-2 mr-1" />
-        Toss coin
+        Toss
       </DButton>
       <DButton @click="throwDice" class="mx-2" color="green">
         <SvgIcon icon="Dice3" class="-ml-2 mr-1" />
-        Throw dice
+        Throw
       </DButton>
     </div>
   </BaseDialog>

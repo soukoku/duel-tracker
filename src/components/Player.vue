@@ -12,7 +12,7 @@
       class="flex-auto mb-3"
     />
 
-    <div class="button-row flex-none flex flex-wrap text-lg">
+    <div class="equal-child flex-none flex flex-wrap text-lg">
       <DButton @click="add(100)" color="green">
         <SvgIcon icon="Plus" title="Plus" />
         100
@@ -38,7 +38,7 @@
         2
       </DButton>
     </div>
-    <div class="button-row flex-none flex flex-wrap text-lg">
+    <div class="equal-child flex-none flex flex-wrap text-lg">
       <DButton @click="add(-100)" color="red">
         <SvgIcon icon="Minus" title="Minus" />
         100
@@ -77,7 +77,7 @@
       >
         <template v-slot:before>
           <span
-            class="flex items-center whitespace-no-wrap px-2 text-gray-700 bg-gray-100"
+            class="flex items-center whitespace-no-wrap px-2 text-gray-700 bg-gray-300"
           >
             Custom
           </span>
@@ -151,9 +151,3 @@ export default {
   }
 }
 </script>
-<style>
-.button-row > button {
-  flex-grow: 1;
-  flex-basis: 0;
-}
-</style>

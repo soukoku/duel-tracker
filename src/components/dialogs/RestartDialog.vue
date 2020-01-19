@@ -7,12 +7,13 @@
   >
     Track a new game with
 
-    <div class="flex flex-col lg:flex-row items-center justify-center py-4">
+    <div class="flex items-center justify-center py-4">
       <button
         v-for="(pt, idx) in lifeList"
         :key="idx"
         :id="`choose-life-${pt}`"
-        class="transition m-2 border rounded-sm px-4 cursor-pointer focus:outline-none"
+        class="transition m-2 border rounded-sm px-2 md:px-4 cursor-pointer 
+            font-serif italic text-yellow-400 text-4xl md:text-6xl focus:outline-none"
         :class="{
           'border-blue-100 bg-blue-700 hover:bg-blue-500 focus:bg-blue-500':
             life === pt,
@@ -21,18 +22,18 @@
         }"
         @click="life = pt"
       >
-        <LifePoints :points="pt" />
+        {{ pt }}
       </button>
     </div>
 
-    and
+    life points and
 
     <div class="flex justify-center py-4">
       <button
         v-for="(pl, idx) in playerList"
         :key="idx"
         type="button"
-        class="transition mx-2 border px-4 cursor-pointer focus:outline-none text-2xl rounded-full w-16 h-16 flex items-center justify-center font-semibold"
+        class="transition mx-2 border px-4 cursor-pointer focus:outline-none text-xl md:text-2xl rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center font-semibold"
         :class="{
           'text-white border-blue-100 bg-blue-600 hover:bg-blue-500 focus:bg-blue-500':
             players === pl,
@@ -48,11 +49,7 @@
     players
 
     <div class="flex justify-center mt-4 px-4">
-      <DButton
-        @click="close(false)"
-        class="mx-2 w-32"
-        v-if="cancellable"
-      >
+      <DButton @click="close(false)" class="mx-2 w-32" v-if="cancellable">
         Cancel
       </DButton>
       <DButton @click="close(true)" color="green" class="mx-2 w-32">
@@ -65,10 +62,9 @@
 
 <script>
 import BaseDialog from './BaseDialog.vue'
-import LifePoints from '@/components/LifePoints.vue'
 
 export default {
-  components: { BaseDialog, LifePoints },
+  components: { BaseDialog },
   props: {
     visible: Boolean,
     cancellable: Boolean
