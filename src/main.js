@@ -4,6 +4,7 @@ import store from './store'
 import '@/assets/tailwind.css'
 import DButton from '@/components/DButton.vue'
 import SvgIcon from '@/components/SvgIcon.vue'
+import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
