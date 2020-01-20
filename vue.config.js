@@ -9,6 +9,7 @@ module.exports = {
       background_color: '#2c5282',
       lang: 'en-US',
       orientation: 'portrait'
-    }
+    },
+    workboxOptions: {}
   }
 }
