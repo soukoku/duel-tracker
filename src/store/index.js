@@ -7,6 +7,8 @@ const state = {
   volume: 1,
   defaultLife: 8000,
   defaultPlayers: 1,
+  players: [],
+  activePlayerIdx: -1,
   ...JSON.parse(localStorage.getItem('dt-state') || '{}')
 }
 
@@ -28,6 +30,17 @@ export default new Vuex.Store({
     },
     SET_DEFAULTPLAYER(state, value) {
       state.defaultPlayers = value
+      persist(state)
+    },
+    SET_PLAYERS(state, value) {
+      state.players = value
+      persist(state)
+    },
+    SET_ACTIVEPLAYER(state, value) {
+      state.activePlayerIdx = value
+      persist(state)
+    },
+    PERSIST(state) {
       persist(state)
     }
   },

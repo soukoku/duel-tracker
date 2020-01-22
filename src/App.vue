@@ -5,9 +5,9 @@
         class="flex-auto overflow-auto bg-blue-800 border-b-2 border-blue-700 flex justify-center"
       >
         <Player
-          v-for="p in players"
+          v-for="(p, idx) in players"
           :key="p.name"
-          v-show="currentPlayer === p"
+          v-show="idx === activePlayerIdx"
           :player="p"
           :showPlayer="players.length > 1"
           @change="lifeChanged"
@@ -18,14 +18,14 @@
           v-for="(p, idx) in players"
           :key="idx"
           type="button"
-          @click="currentPlayer = p"
+          @click="activePlayerIdx = idx"
           style="margin-top:-2px;"
           class="transition border-t-2 mx-1 p-2 md:px-8 rounded-b-lg focus:outline-none focus:shadow-outline z-10"
           :class="{
             'border-transparent hover:border-blue-700 focus:border-blue-700 hover:bg-blue-800 focus:bg-blue-800 text-blue-200':
-              p !== currentPlayer,
+              idx !== activePlayerIdx,
             'border-blue-200 hover:bg-blue-600 focus:bg-blue-600 text-blue-100 bg-blue-700':
-              p === currentPlayer
+              idx === activePlayerIdx
           }"
           :title="`Switch to ${p.name}`"
         >
@@ -92,16 +92,36 @@ export default {
   },
   data() {
     return {
-      firstTime: true,
-      showNewGameDlg: true,
-      showCdDlg: false,
-      players: [],
-      currentPlayer: null
+      firstTime: false,
+      showNewGameDlg: false,
+      showCdDlg: false
     }
   },
   computed: {
+    players: {
+      get() {
+        return this.$store.state.players
+      },
+      set(val) {
+        this.$store.commit('SET_PLAYERS', val)
+      }
+    },
+    activePlayerIdx: {
+      get() {
+        return this.$store.state.activePlayerIdx
+      },
+      set(val) {
+        this.$store.commit('SET_ACTIVEPLAYER', val)
+      }
+    },
     hasModalDialog() {
       return this.showNewGameDlg || this.showCdDlg
+    }
+  },
+  mounted() {
+    if (!this.players.length) {
+      this.firstTime = true
+      this.showNewGameDlg = true
     }
   },
   methods: {
@@ -111,19 +131,21 @@ export default {
       } else {
         this.$refs.sounds.playZero()
       }
+      this.$store.commit('PERSIST')
     },
     closeRestartPrompt(params) {
       this.firstTime = false
       this.showNewGameDlg = false
       if (params) {
-        this.players = []
+        const newPlayers = []
         for (let i = 0; i < params.players; ) {
-          this.players.push({
+          newPlayers.push({
             name: `Player ${++i}`,
             life: params.life
           })
         }
-        this.currentPlayer = this.players[0]
+        this.players = newPlayers
+        this.activePlayerIdx = 0
         this.$refs.sounds.playStart()
       }
       // somehow nexttick doesn't work here
