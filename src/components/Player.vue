@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col p-4 max-w-3xl">
+  <div class="flex flex-col p-4 pb-0 max-w-3xl">
     <div class="flex-none flex mb-3">
       <div
         v-if="showPlayer"
@@ -40,7 +40,9 @@
           <DButton @click="add(-2000)" color="red">
             -2000
           </DButton>
-          <DButton @click="multiply(0.5)" color="red" style="min-width:90px;">
+        </div>
+        <div class="equal-child flex-none flex flex-wrap">
+          <DButton @click="multiply(0.5)" color="red">
             Half
           </DButton>
         </div>
@@ -66,6 +68,8 @@
           <DButton @click="add(2000)" color="green">
             +2000
           </DButton>
+        </div>
+        <div class="equal-child flex-none flex flex-wrap">
           <DButton @click="multiply(2)" color="green">
             Double
           </DButton>

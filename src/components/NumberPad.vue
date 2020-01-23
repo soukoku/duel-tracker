@@ -3,11 +3,11 @@
     <div
       class="flex-none flex items-stretch bg-white text-gray-800 rounded-sm m-1"
     >
-      <span class="flex items-center pr-3 pl-2 bg-gray-300">
+      <span class="flex items-center pr-4 pl-3 bg-gray-300 font-semibold">
         Delta
       </span>
       <div
-        class="flex-auto flex items-center justify-end px-2 py-4 text-gray-700"
+        class="flex-auto flex items-center justify-end p-4 text-gray-700 tracking-wider"
       >
         {{ amount }}
       </div>
