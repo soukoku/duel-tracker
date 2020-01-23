@@ -69,11 +69,11 @@ export default {
 </script>
 <style>
 .lp-text {
-  font-size: 3.5em;
+  font-size: 4em;
 }
 @screen md {
   .lp-text {
-    font-size: 6em;
+    font-size: 7em;
   }
 }
 </style>
