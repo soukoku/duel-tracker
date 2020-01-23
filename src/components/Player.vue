@@ -7,11 +7,7 @@
       >
         {{ player.name }}
       </div>
-      <LifePoints
-        :points="player.life"
-        :animate="!isNew"
-        class="flex-auto"
-      />
+      <LifePoints :points="player.life" :animate="!isNew" class="flex-auto" />
     </div>
 
     <div class="flex-auto flex flex-col md:flex-row mb-2 overflow-auto">
@@ -23,53 +19,55 @@
       />
       <div class="flex flex-col md:w-1/2 text-xl">
         <div class="equal-child flex-none flex flex-wrap">
-          <DButton @click="add(100)" color="green">
-            <SvgIcon icon="Plus" title="Plus" />
-            100
+          <DButton @click="add(-25)" color="red">
+            -25
           </DButton>
-          <DButton @click="add(200)" color="green">
-            <SvgIcon icon="Plus" title="Plus" />
-            200
+          <DButton @click="add(-50)" color="red">
+            -50
           </DButton>
-          <DButton @click="add(500)" color="green">
-            <SvgIcon icon="Plus" title="Plus" />
-            500
+          <DButton @click="add(-100)" color="red">
+            -100
           </DButton>
-          <DButton @click="add(1000)" color="green">
-            <SvgIcon icon="Plus" title="Plus" />
-            1000
+          <DButton @click="add(-200)" color="red">
+            -200
           </DButton>
-          <DButton @click="add(2000)" color="green">
-            <SvgIcon icon="Plus" title="Plus" />
-            2000
+          <DButton @click="add(-500)" color="red">
+            -500
           </DButton>
-          <DButton @click="multiply(2)" color="green">
-            Double
+          <DButton @click="add(-1000)" color="red">
+            -1000
+          </DButton>
+          <DButton @click="add(-2000)" color="red">
+            -2000
+          </DButton>
+          <DButton @click="multiply(0.5)" color="red" style="min-width:90px;">
+            Half
           </DButton>
         </div>
         <div class="equal-child flex-none flex flex-wrap">
-          <DButton @click="add(-100)" color="red">
-            <SvgIcon icon="Minus" title="Minus" />
-            100
+          <DButton @click="add(25)" color="green">
+            +25
           </DButton>
-          <DButton @click="add(-200)" color="red">
-            <SvgIcon icon="Minus" title="Minus" />
-            200
+          <DButton @click="add(50)" color="green">
+            +50
           </DButton>
-          <DButton @click="add(-500)" color="red">
-            <SvgIcon icon="Minus" title="Minus" />
-            500
+          <DButton @click="add(100)" color="green">
+            +100
           </DButton>
-          <DButton @click="add(-1000)" color="red">
-            <SvgIcon icon="Minus" title="Minus" />
-            1000
+          <DButton @click="add(200)" color="green">
+            +200
           </DButton>
-          <DButton @click="add(-2000)" color="red">
-            <SvgIcon icon="Minus" title="Minus" />
-            2000
+          <DButton @click="add(500)" color="green">
+            +500
           </DButton>
-          <DButton @click="multiply(0.5)" color="red">
-            Half
+          <DButton @click="add(1000)" color="green">
+            +1000
+          </DButton>
+          <DButton @click="add(2000)" color="green">
+            +2000
+          </DButton>
+          <DButton @click="multiply(2)" color="green">
+            Double
           </DButton>
         </div>
       </div>

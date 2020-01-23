@@ -3,36 +3,17 @@
     <div
       class="flex-none flex items-stretch bg-white text-gray-800 rounded-sm m-1"
     >
-      <!-- <template v-slot:before>
-            <span
-              class="flex items-center pr-3 pl-2 bg-gray-300"
-            >
-              Delta
-            </span>
-          </template> -->
-      <div class="flex-auto flex items-center justify-end px-2 py-4 text-gray-700">
+      <span class="flex items-center pr-3 pl-2 bg-gray-300">
+        Delta
+      </span>
+      <div
+        class="flex-auto flex items-center justify-end px-2 py-4 text-gray-700"
+      >
         {{ amount }}
       </div>
-      <div class="flex-none flex items-stretch">
-        <DButton
-          @click="$emit('apply', amount)"
-          color="green"
-          title="Add custom amount"
-          customSize
-          class="px-4 py-0"
-        >
-          <SvgIcon icon="Plus" />
-        </DButton>
-        <DButton
-          @click="$emit('apply', -amount)"
-          color="red"
-          title="Subtract custom amount"
-          customSize
-          class="px-4 py-0"
-        >
-          <SvgIcon icon="Minus" />
-        </DButton>
-      </div>
+      <!-- <div class="flex-none flex items-stretch">
+        
+      </div> -->
     </div>
     <div class="equal-child flex-none flex">
       <DButton @click="append(1)" :disabled="!canAdd">
@@ -76,6 +57,22 @@
       </DButton>
       <DButton @click="backspace" title="Backspace">
         <SvgIcon icon="BackspaceOutline" />
+      </DButton>
+    </div>
+    <div class="equal-child flex-none flex">
+      <DButton
+        @click="$emit('apply', amount)"
+        color="green"
+        title="Add delta amount"
+      >
+        <SvgIcon icon="Plus" :size="30" />
+      </DButton>
+      <DButton
+        @click="$emit('apply', -amount)"
+        color="red"
+        title="Subtract delta amount"
+      >
+        <SvgIcon icon="Minus" :size="30" />
       </DButton>
     </div>
   </div>
