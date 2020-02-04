@@ -10,6 +10,8 @@ module.exports = {
       lang: 'en-US',
       orientation: 'portrait'
     },
-    workboxOptions: {}
+    workboxOptions: {
+      skipWaiting: true
+    }
   }
 }
