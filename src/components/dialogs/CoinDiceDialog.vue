@@ -6,9 +6,18 @@
     @close="close"
   >
     <div class="flex flex-wrap justify-center px-4 mb-4">
-      <!-- <transition-group tag="div" class="flex flex-wrap justify-center"> -->
-      <Coin v-for="(coin, idx) in coins" :key="idx" :head="!!coin" />
-      <!-- </transition-group> -->
+      <transition-group
+        tag="div"
+        class="flex flex-wrap justify-center"
+        name="list"
+      >
+        <Coin
+          v-for="coin in coins"
+          :key="coin.id"
+          :head="!!coin.val"
+          class="transition"
+        />
+      </transition-group>
       <button
         type="button"
         title="Clear coin rolls"
@@ -21,9 +30,18 @@
     </div>
 
     <div class="flex flex-wrap justify-center px-4 mb-4">
-      <!-- <transition-group tag="div" class="flex flex-wrap justify-center"> -->
-      <Die v-for="(die, idx) in dice" :key="idx" :value="die" />
-      <!-- </transition-group> -->
+      <transition-group
+        tag="div"
+        class="flex flex-wrap justify-center"
+        name="list"
+      >
+        <Die
+          v-for="die in dice"
+          :key="die.id"
+          :value="die.val"
+          class="transition"
+        />
+      </transition-group>
       <button
         type="button"
         title="Clear dice rolls"
@@ -92,10 +110,10 @@ export default {
   },
   methods: {
     tossCoin() {
-      this.coins.push(getRandomNum() % 2)
+      this.coins.push({ id: this.coins.length, val: getRandomNum() % 2 })
     },
     rollDice() {
-      this.dice.push(1 + (getRandomNum() % 6))
+      this.dice.push({ id: this.dice.length, val: 1 + (getRandomNum() % 6) })
     },
     close() {
       this.coins = []
@@ -105,3 +123,16 @@ export default {
   }
 }
 </script>
+<style>
+.transition {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to
+/* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.list-leave-active {
+  position: absolute;
+}
+</style>
