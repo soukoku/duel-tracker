@@ -2,9 +2,9 @@
 import { useSettingsStore } from '@/stores/settings'
 import { onMounted, ref, watch, type Ref } from 'vue'
 import SvgIcon from './SvgIcon.vue'
+import type { DiceValue } from '@/util'
 
-export type DiceValues = 1 | 2 | 3 | 4 | 5 | 6
-const props = defineProps<{ value: DiceValues }>()
+const props = defineProps<{ value: DiceValue }>()
 
 // audio parts
 const appSettings = useSettingsStore()
@@ -22,7 +22,7 @@ watch(() => appSettings.volume, val => {
 
 </script>
 <template>
-  <span class="flex items-center justify-center m-2 die" :class="'show-' + props.value">
+  <span class="die" :class="'is-' + props.value">
     <span class="sr-only">{{ props.value }}</span>
     <SvgIcon class="text-red-600 face face-1" size="64">
       <circle cx="12" cy="12" r="4" />
@@ -66,30 +66,28 @@ watch(() => appSettings.volume, val => {
 <style>
 /* modified from https://icodemag.com/3d-rolling-dice-css-javascript/ */
 .die {
+  /* perspective-origin: 50% 50%; */
   transform-style: preserve-3d;
-  /* transform: translateZ(-32px); */
+  transform: translateZ(-32px);
   transition: transform 1s;
-  /* position: relative; */
-  /* width: 64px; */
-  /* height: 64px; */
+  position: relative;
+  width: 64px;
+  height: 64px;
 }
 
 .die>.face {
-  @apply border-2 border-gray-300 rounded bg-gray-50;
-  transition: transform 1s;
+  @apply border-2 border-gray-300 rounded bg-gray-50 absolute;
 }
 
-/* .die>.face-1 {
+.die>.face-1 {
   transform: rotateY(0deg) translateZ(32px);
-} */
-
-.die>.face-2 {
-  transform: rotateZ(120deg)
-  /* transform: translateX(32px); */
-  /* transform: rotateY(180deg) translateZ(32px); */
 }
 
-/* .die>.face-3 {
+.die>.face-6 {
+  transform: translateZ(-32px);
+}
+
+.die>.face-3 {
   transform: rotateY(90deg) translateZ(32px);
 }
 
@@ -97,36 +95,37 @@ watch(() => appSettings.volume, val => {
   transform: rotateY(-90deg) translateZ(32px);
 }
 
+
 .die>.face-5 {
   transform: rotateX(90deg) translateZ(32px);
 }
 
-.die>.face-6 {
+.die>.face-2 {
   transform: rotateX(-90deg) translateZ(32px);
-} */
+}
 
 
-/* .die.show-1 {
+.die.is-1 {
   transform: translateZ(-32px) rotateY(0deg);
 }
 
-.die.show-2 {
+.die.is-6 {
   transform: translateZ(-32px) rotateY(-180deg);
 }
 
-.die.show-3 {
+.die.is-3 {
   transform: translateZ(-32px) rotateY(-90deg);
 }
 
-.die.show-4 {
+.die.is-4 {
   transform: translateZ(-32px) rotateY(90deg);
 }
 
-.die.show-5 {
+.die.is-5 {
   transform: translateZ(-32px) rotateX(-90deg);
 }
 
-.die.show-6 {
+.die.is-2 {
   transform: translateZ(-32px) rotateX(90deg);
-} */
+}
 </style>
