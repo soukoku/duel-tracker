@@ -1,13 +1,6 @@
-<template>
-  <svg :style="sizeStyle" viewBox="0 0 24 24" class="inline-block fill-current" :arial-hidden="!title">
-    <title v-if="title">{{ title }}</title>
-    <slot>
-      <path v-if="resolvedPath" :d="resolvedPath" />
-    </slot>
-  </svg>
-</template>
+<script setup lang="ts">
+import { computed } from 'vue'
 
-<script>
 // from https://materialdesignicons.com/
 const materialIcons = {
   AccountTie:
@@ -31,29 +24,31 @@ const materialIcons = {
   // SlashForward: 'M7 21L14.9 3H17L9.1 21H7Z',
   SwordCross:
     'M6.2,2.44L18.1,14.34L20.22,12.22L21.63,13.63L19.16,16.1L22.34,19.28C22.73,19.67 22.73,20.3 22.34,20.69L21.63,21.4C21.24,21.79 20.61,21.79 20.22,21.4L17,18.23L14.56,20.7L13.15,19.29L15.27,17.17L3.37,5.27V2.44H6.2M15.89,10L20.63,5.26V2.44H17.8L13.06,7.18L15.89,10M10.94,15L8.11,12.13L5.9,14.34L3.78,12.22L2.37,13.63L4.84,16.1L1.66,19.29C1.27,19.68 1.27,20.31 1.66,20.7L2.37,21.41C2.76,21.8 3.39,21.8 3.78,21.41L7,18.23L9.44,20.7L10.85,19.29L8.73,17.17L10.94,15Z',
-  VolumeHigh:
-    'M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z',
-  VolumeOff:
-    'M12,4L9.91,6.09L12,8.18M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.53C15.58,18.04 14.83,18.46 14,18.7V20.77C15.38,20.45 16.63,19.82 17.68,18.96L19.73,21L21,19.73L12,10.73M19,12C19,12.94 18.8,13.82 18.46,14.64L19.97,16.15C20.62,14.91 21,13.5 21,12C21,7.72 18,4.14 14,3.23V5.29C16.89,6.15 19,8.83 19,12M16.5,12C16.5,10.23 15.5,8.71 14,7.97V10.18L16.45,12.63C16.5,12.43 16.5,12.21 16.5,12Z'
-}
+} as Record<string, string>
 
-export default {
-  props: {
-    icon: String,
-    pathData: String,
-    size: { type: [Number, String], default: 24 },
-    title: String
-  },
-  computed: {
-    resolvedPath() {
-      return materialIcons[this.icon] || this.pathData
-    },
-    sizeStyle() {
-      if (typeof this.size === 'number') {
-        return { width: this.size + 'px', height: this.size + 'px' }
-      }
-      return { width: this.size, height: this.size }
-    }
+const props = withDefaults(defineProps<{
+  icon?: string,
+  pathData?: string,
+  size?: number | string,
+  title?: string
+}>(), { size: 24 })
+
+const resolvedPath = computed(() => {
+  return materialIcons[props.icon || ''] || props.pathData
+})
+const sizeStyle = computed(() => {
+  if (typeof props.size === 'number') {
+    return { width: props.size + 'px', height: props.size + 'px' }
   }
-}
+  return { width: props.size, height: props.size }
+})
+
 </script>
+<template>
+  <svg :style="sizeStyle" viewBox="0 0 24 24" class="inline-block fill-current">
+    <title v-if="title">{{ title }}</title>
+    <slot>
+      <path v-if="resolvedPath" :d="resolvedPath" />
+    </slot>
+  </svg>
+</template>
