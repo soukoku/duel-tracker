@@ -14,7 +14,7 @@ function Test() {
   <main>
     <button @click="Test">Test</button>
     <br>
-    <LifePointsDisplay :points="points" animate class="text-7xl" />
+    <LifePointsDisplay :points="points" animate sfx class="text-7xl" />
 
   </main>
 </template>
