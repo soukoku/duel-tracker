@@ -90,7 +90,7 @@ watch(() => appSettings.volume, val => {
       <circle cx="18" cy="12" r="2" />
       <circle cx="18" cy="18" r="2" />
     </SvgIcon>
-    <audio preload="auto" ref="rollAudio" class="hidden">
+    <audio preload="auto" ref="rollAudio" class="hidden" :muted="appSettings.muted">
       <source src="@/assets/sounds/dice.mp3" type="audio/mpeg" />
       <source src="@/assets/sounds/dice.ogg" type="audio/ogg; codecs=vorbis" />
     </audio>
