@@ -2,9 +2,41 @@
 import { useSettingsStore } from '@/stores/settings'
 import { onMounted, ref, watch, type Ref } from 'vue'
 import SvgIcon from './SvgIcon.vue'
-import type { DiceValue } from '@/util'
+import { type DiceValue, shuffleArray } from '@/util'
 
 const props = defineProps<{ value: DiceValue }>()
+
+// define transforms for showing a different face
+const transforms = [{
+  // 1
+  transform: 'translateZ(-32px) rotateY(0deg)'
+}, {
+  // 2
+  transform: 'translateZ(-32px) rotateY(0deg)'
+}, {
+  // 3
+  transform: 'translateZ(-32px) rotateY(-90deg'
+}, {
+  // 4
+  transform: 'translateZ(-32px) rotateY(90deg)'
+}, {
+  // 5
+  transform: 'translateZ(-32px) rotateX(-90deg)'
+}, {
+  // 6
+  transform: 'translateZ(-32px) rotateX(90deg)'
+}]
+const die = ref() as Ref<HTMLElement | undefined>
+
+function animateToValue() {
+  // generate animation to the value passed
+  const frames = shuffleArray([...transforms, ...transforms])
+  frames.push(transforms[props.value - 1])
+  die.value?.animate(frames, { duration: 500, easing: 'ease-out', fill: 'forwards' })
+}
+onMounted(() => animateToValue())
+watch(() => props.value, () => animateToValue())
+
 
 // audio parts
 const appSettings = useSettingsStore()
@@ -13,6 +45,7 @@ function updateVolume(val: number) {
   if (rollAudio.value) rollAudio.value.volume = val
 }
 onMounted(() => {
+  console.log('second mount')
   updateVolume(appSettings.volume)
   rollAudio.value?.play()
 })
@@ -22,7 +55,7 @@ watch(() => appSettings.volume, val => {
 
 </script>
 <template>
-  <span class="die" :class="'is-' + props.value">
+  <span ref="die" class="die" :class="'is-' + props.value">
     <span class="sr-only">{{ props.value }}</span>
     <SvgIcon class="text-red-600 face face-1" size="64">
       <circle cx="12" cy="12" r="4" />
@@ -66,7 +99,6 @@ watch(() => appSettings.volume, val => {
 <style>
 /* modified from https://icodemag.com/3d-rolling-dice-css-javascript/ */
 .die {
-  /* perspective-origin: 50% 50%; */
   transform-style: preserve-3d;
   transform: translateZ(-32px);
   transition: transform 1s;
@@ -95,37 +127,11 @@ watch(() => appSettings.volume, val => {
   transform: rotateY(-90deg) translateZ(32px);
 }
 
-
 .die>.face-5 {
   transform: rotateX(90deg) translateZ(32px);
 }
 
 .die>.face-2 {
   transform: rotateX(-90deg) translateZ(32px);
-}
-
-
-.die.is-1 {
-  transform: translateZ(-32px) rotateY(0deg);
-}
-
-.die.is-6 {
-  transform: translateZ(-32px) rotateY(-180deg);
-}
-
-.die.is-3 {
-  transform: translateZ(-32px) rotateY(-90deg);
-}
-
-.die.is-4 {
-  transform: translateZ(-32px) rotateY(90deg);
-}
-
-.die.is-5 {
-  transform: translateZ(-32px) rotateX(-90deg);
-}
-
-.die.is-2 {
-  transform: translateZ(-32px) rotateX(90deg);
 }
 </style>
