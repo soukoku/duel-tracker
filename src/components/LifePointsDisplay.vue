@@ -28,7 +28,7 @@ function playForLife(targetLP: number, fromLP: number) {
   stopAudio(changeLifeAudio.value)
   stopAudio(zeroLifeAudio.value)
   if (targetLP === 0) zeroLifeAudio.value?.play()
-  else if (!!fromLP && targetLP === appSettings.defaultLifePoints) initLifeAudio?.value?.play()
+  else if (!fromLP && targetLP === appSettings.defaultLifePoints) initLifeAudio?.value?.play()
   else changeLifeAudio.value?.play()
 }
 function stopAudio(el?: HTMLAudioElement) {
@@ -70,7 +70,7 @@ watch(() => props.points, (newVal, oldVal) => {
   cleanup()
   if (props.sfx) playForLife(newVal, oldVal || 0)
   if (props.animate &&
-    (!!oldVal || newVal !== appSettings.defaultLifePoints)) {
+    !(!oldVal && newVal === appSettings.defaultLifePoints)) {
     scrambleTo(display.value, newVal)
   } else {
     display.value = newVal
