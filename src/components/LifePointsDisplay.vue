@@ -66,7 +66,7 @@ function scrambleTo(from: number, to: number) {
 
 const display = ref(0)
 watch(() => props.points, (newVal, oldVal) => {
-  console.log(`from ${oldVal} to ${newVal}`)
+  // console.log(`from ${oldVal} to ${newVal}`)
   cleanup()
   if (props.sfx) playForLife(newVal, oldVal || 0)
   if (props.animate &&

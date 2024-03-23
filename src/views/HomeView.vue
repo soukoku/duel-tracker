@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import LifePointsDisplay from '@/components/LifePointsDisplay.vue'
+import VolumeControl from '@/components/VolumeControl.vue'
 import { ref } from 'vue'
 import { randomBetween } from '@/util'
 
@@ -18,6 +19,7 @@ function Reset() {
 
 <template>
   <main>
+    <VolumeControl />
     <button @click="Test">Change</button>
     <button @click="Zero">Zero</button>
     <button @click="Reset">Reset</button>
