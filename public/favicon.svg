@@ -1,0 +1,14 @@
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="16.000000pt" height="16.000000pt" viewBox="0 0 118 152"
+ preserveAspectRatio="xMidYMid meet">
+ <style>
+ .card-border{fill:#E4AA47}
+ .card-bg{fill:#873B2B}
+ .card-center{fill:#070F11}
+ </style>
+
+  <rect width="118" height="152" class="card-border" rx="3" ry="3" />
+  <rect width="108" height="142" x="5" y="5" class="card-bg" rx="2" ry="2" />
+  <ellipse cx="59" cy="76" rx="20" ry="40" class="card-center" />
+ 
+</svg>

@@ -1,32 +1,39 @@
-# Duel Tracker
+# duel-tracker
 
-This project uses Vue to make a Yugioh life point tracker with sounds.
-It attempts to use/implement these things for coding/learning practice:
+This template should help get you started developing with Vue 3 in Vite.
 
-* Vue and Vuex
-* PWA using vue cli's plugin
-* Tailwind css
-* Html audio
-* Mobile and desktop views
-* Accessibiliy
+## Recommended IDE Setup
 
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Project setup
-```
-yarn install
-```
+## Type Support for `.vue` Imports in TS
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-### Compiles and minifies for production
-```
-yarn build
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
+npm install
 ```
 
-### Lints and fixes files
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
 ```
-yarn lint
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
 ```
