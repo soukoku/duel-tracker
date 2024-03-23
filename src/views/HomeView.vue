@@ -3,16 +3,24 @@ import LifePointsDisplay from '@/components/LifePointsDisplay.vue'
 import { ref } from 'vue'
 import { randomBetween } from '@/util'
 
-const points = ref(4000)
+const points = ref(8000)
 
 function Test() {
-  points.value = randomBetween(0, 4000)
+  points.value = randomBetween(0, 8000)
+}
+function Zero() {
+  points.value = 0
+}
+function Reset() {
+  points.value = 8000
 }
 </script>
 
 <template>
   <main>
-    <button @click="Test">Test</button>
+    <button @click="Test">Change</button>
+    <button @click="Zero">Zero</button>
+    <button @click="Reset">Reset</button>
     <br>
     <LifePointsDisplay :points="points" animate sfx class="text-7xl" />
 

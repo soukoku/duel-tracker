@@ -1,11 +1,11 @@
-import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import { useStorage } from '@vueuse/core'
 
 export const useSettingsStore = defineStore('settings', () => {
-  const defaultLife = ref(8000)
-  const defaultPlayers = ref(1)
-  const volume = ref(1)
-  const muted = ref(false)
+  const defaultLifePoints = useStorage('app:defaultLP', 8000)
+  const defaultPlayers = useStorage('app:defaultPlayers', 1)
+  const volume = useStorage('app:volume', .5)
+  const muted = useStorage('app:muted', false)
 
-  return { defaultLife, defaultPlayers, volume, muted }
+  return { defaultLifePoints, defaultPlayers, volume, muted }
 })

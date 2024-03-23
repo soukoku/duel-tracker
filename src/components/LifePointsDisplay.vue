@@ -11,9 +11,11 @@ const props = defineProps<{
 
 // audio parts
 const appSettings = useSettingsStore()
+const initLifeAudio = ref() as Ref<HTMLAudioElement | undefined>
 const changeLifeAudio = ref() as Ref<HTMLAudioElement | undefined>
 const zeroLifeAudio = ref() as Ref<HTMLAudioElement | undefined>
 function updateVolume(val: number) {
+  if (initLifeAudio.value) initLifeAudio.value.volume = val
   if (changeLifeAudio.value) changeLifeAudio.value.volume = val
   if (zeroLifeAudio.value) zeroLifeAudio.value.volume = val
 }
@@ -21,10 +23,12 @@ onMounted(() => updateVolume(appSettings.volume))
 watch(() => appSettings.volume, val => {
   updateVolume(val)
 })
-function playForLife(targetLP: number) {
+function playForLife(targetLP: number, fromLP: number) {
+  stopAudio(initLifeAudio.value)
   stopAudio(changeLifeAudio.value)
   stopAudio(zeroLifeAudio.value)
   if (targetLP === 0) zeroLifeAudio.value?.play()
+  else if (!!fromLP && targetLP === appSettings.defaultLifePoints) initLifeAudio?.value?.play()
   else changeLifeAudio.value?.play()
 }
 function stopAudio(el?: HTMLAudioElement) {
@@ -61,13 +65,15 @@ function scrambleTo(from: number, to: number) {
 }
 
 const display = ref(0)
-watch(() => props.points, val => {
+watch(() => props.points, (newVal, oldVal) => {
+  console.log(`from ${oldVal} to ${newVal}`)
   cleanup()
-  if (props.sfx) playForLife(val)
-  if (props.animate) {
-    scrambleTo(display.value, val)
+  if (props.sfx) playForLife(newVal, oldVal || 0)
+  if (props.animate &&
+    (!!oldVal || newVal !== appSettings.defaultLifePoints)) {
+    scrambleTo(display.value, newVal)
   } else {
-    display.value = val
+    display.value = newVal
   }
 }, { immediate: true })
 
@@ -80,6 +86,10 @@ onBeforeUnmount(() => {
 <template>
   <span class="inline-flex items-center justify-center font-serif italic leading-none text-yellow-400 text-border">
     {{ display }}
+    <audio preload="auto" ref="initLifeAudio" class="hidden" :muted="appSettings.muted">
+      <source src="@/assets/sounds/life-init.ogg" type="audio/ogg; codecs=vorbis" />
+      <source src="@/assets/sounds/life-init.mp3" type="audio/mpeg" />
+    </audio>
     <audio preload="auto" ref="changeLifeAudio" class="hidden" :muted="appSettings.muted">
       <source src="@/assets/sounds/life-change.ogg" type="audio/ogg; codecs=vorbis" />
       <source src="@/assets/sounds/life-change.mp3" type="audio/mpeg" />
