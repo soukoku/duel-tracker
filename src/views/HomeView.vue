@@ -2,6 +2,7 @@
 import LifePointsDisplay from '@/components/LifePointsDisplay.vue'
 import DieDisplay from '@/components/DieDisplay.vue'
 import VolumeControl from '@/components/VolumeControl.vue'
+import SlideInDrawer from '@/components/SlideInDrawer.vue'
 import { ref } from 'vue'
 import { randomBetween, rollDice, type DiceValue } from '@/util'
 
@@ -27,6 +28,8 @@ function Zero() {
 function Reset() {
   points.value = 8000
 }
+
+const showDrawer = ref(false)
 </script>
 
 <template>
@@ -45,5 +48,8 @@ function Reset() {
       class="flex items-center justify-center h-32 gap-6 border border-gray-200">
       <DieDisplay v-for="(val, idx) in dice" :key="idx" :value="val" />
     </div>
+
+    <button @click="showDrawer = true">Show drawer</button>
+    <SlideInDrawer v-model:isOpen="showDrawer"></SlideInDrawer>
   </main>
 </template>
