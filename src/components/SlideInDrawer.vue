@@ -51,9 +51,9 @@ const enterTo = computed(() => {
               :enter-to="enterTo" leave="transform transition ease-in-out duration-300" :leave-from="enterTo"
               :leave-to="enterFrom">
               <DialogPanel class="pointer-events-auto"
-                :class="[fromBottom ? 'h-screen max-h-96 w-full' : 'w-screen max-w-md']">
+                :class="[fromBottom ? 'min-h-24 max-h-96 w-screen' : 'w-screen max-w-md']">
                 <div class="flex flex-col h-full py-6 overflow-hidden bg-white"
-                  :class="[fromBottom ? 'shadow-top-lg' : 'shadow-xl']">
+                  :class="[fromBottom ? 'shadow-top-lg rounded-t-lg' : fromRight ? 'shadow-xl rounded-l-lg' : 'shadow-xl rounded-r-lg']">
                   <div class="flex-none px-4 sm:px-6">
                     <div class="flex items-start justify-between">
                       <DialogTitle class="text-base font-semibold leading-6 text-gray-900">
